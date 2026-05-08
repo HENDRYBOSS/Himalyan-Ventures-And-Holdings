@@ -24,7 +24,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-            backdrop-filter: blur(0px);
         }
         nav {
             max-width: 1400px;
@@ -44,7 +43,7 @@
             letter-spacing: -0.5px;
         }
         .logo i { font-size: 2rem; color: var(--gold); }
-        .logo span { font-size: 0.9rem; font-weight: normal; display: block; letter-spacing: 0; }
+        .logo span { font-size: 0.7rem; font-weight: normal; display: inline-block; margin-left: 8px; }
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -113,7 +112,7 @@
             border-radius: 4px;
         }
 
-        .services-grid, .focus-grid, .core-grid {
+        .services-grid, .core-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
@@ -133,9 +132,9 @@
             box-shadow: 0 25px 45px rgba(0,48,135,0.12);
             border-color: var(--gold);
         }
-        .card i { font-size: 3.2rem; color: var(--primary); margin-bottom: 1.2rem; background: #eef3ff; padding: 0.8rem; border-radius: 60px; transition: 0.2s; }
+        .card i { font-size: 3.2rem; color: var(--primary); margin-bottom: 1.2rem; background: #eef3ff; padding: 0.8rem; border-radius: 60px; }
         .card h3 { font-size: 1.7rem; margin-bottom: 1rem; color: #002366; }
-        .card p { color: #3e5a6f; line-height: 1.6; }
+        .card p { color: #3e5a6f; line-height: 1.6; text-align: left; }
 
         .features { background: linear-gradient(135deg, #0a2540, #003087); color: white; }
         .features h2 { color: white; }
@@ -170,7 +169,8 @@
         .stat-number { font-size: 2.4rem; font-weight: 800; color: var(--accent); }
         .stat-label { font-weight: 600; color: var(--primary);}
 
-        footer {
+        /* Enhanced Footer Styles */
+        .main-footer {
             background: #0a1428;
             color: #dce5f0;
             padding: 4rem 0 2rem;
@@ -178,13 +178,76 @@
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
-        .footer-grid h4 { color: var(--gold); margin-bottom: 1rem; }
-        .social-icons i { font-size: 1.6rem; margin-right: 1rem; cursor: pointer; transition: 0.2s; }
-        .social-icons i:hover { color: var(--gold); transform: scale(1.1); }
+        .footer-col h4 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            border-left: 3px solid var(--gold);
+            padding-left: 12px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+        .footer-col ul li a {
+            color: #dce5f0;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+        .footer-col ul li a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        .footer-col p {
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-col p i {
+            width: 24px;
+            color: var(--gold);
+        }
+        .info-officer {
+            background: rgba(255,255,255,0.05);
+            padding: 1.2rem;
+            border-radius: 16px;
+            margin-top: 0.5rem;
+        }
+        .info-officer h5 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .social-icons {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .social-icons i {
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #dce5f0;
+        }
+        .social-icons i:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+        }
 
         @media (max-width: 850px) {
             nav { flex-direction: column; gap: 1rem; }
@@ -223,7 +286,7 @@
             <div class="logo">
                 <i class="fas fa-mountain"></i> 
                 Himalayan Ventures
-                <span style="font-size: 0.7rem; display: inline-block; margin-left: 8px;">And Holdings Pvt. Ltd.</span>
+                <span>And Holdings Pvt. Ltd.</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -231,12 +294,12 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#coreBusiness">Core Areas</a></li>
                 <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#footer-contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Slider (High quality visual) -->
+    <!-- Hero Slider -->
     <div class="slider" id="home">
         <div class="slide active" style="background-image: url('https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=1600'); background-position: center 40%;">
             <div class="overlay"></div>
@@ -263,16 +326,19 @@
         </div>
     </div>
 
-    <!-- About Section (Complete introduction text from doc) -->
+    <!-- About Section -->
     <section id="about">
         <div class="container">
-            <h2>About Us</h2>
-            <div style="max-width: 1050px; margin: 0 auto; text-align: center; font-size: 1.1rem;">
-                <p><strong>Himalayan Ventures and Holdings Pvt. Ltd.</strong> is a Nepal-based investment and trading company dedicated to building long-term value through disciplined capital allocation across key economic sectors. Rooted in the resilience and strength symbolized by the Himalayas, the company operates with a clear and focused mandate: to invest and trade exclusively in the <strong>share market, commodity market, real estate, and small and medium enterprises (SMEs)</strong>.</p>
-                <p style="margin-top: 1.2rem;">With a strategic emphasis on diversification and risk-managed growth, the company creates sustainable financial returns while contributing meaningfully to Nepal's evolving economic landscape. Operating from Kathmandu, it aligns activities with capital formation, efficient markets, and enterprise development — integrating careful market analysis, prudent risk assessment, and disciplined execution.</p>
+            <h2>Company Overview</h2>
+            <div style="max-width: 1100px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; text-align: center; margin-bottom: 1.5rem;"><strong>Himalayan Ventures and Holdings</strong> is a Nepal-based investment and trading company dedicated to building long-term value through disciplined capital allocation across key economic sectors. Rooted in the resilience and strength symbolized by the Himalayas, the company operates with a clear and focused mandate: to invest and trade exclusively in the <strong>share market, commodity market, real estate, and small and medium enterprises (SMEs)</strong>.</p>
+                <p style="margin-top: 1rem;">With a strategic emphasis on diversification and risk-managed growth, Himalayan Ventures and Holdings seeks to create sustainable financial returns while contributing meaningfully to Nepal's evolving economic landscape. The company approaches every investment with prudence, foresight, and a commitment to long-term prosperity.</p>
+                <p style="margin-top: 1rem;">The company is structured to function as a strategic investment holding entity, deploying capital across multiple asset classes with the objective of achieving balanced growth and financial stability. By actively engaging in both investment and trading activities, Himalayan Ventures and Holdings maintains the flexibility to respond to evolving market conditions while preserving a long-term perspective.</p>
+                <p style="margin-top: 1rem;">Operating from Kathmandu, the company aligns its activities with Nepal's economic landscape, recognizing the importance of capital formation, efficient markets, and enterprise development. Its approach integrates careful market analysis, prudent risk assessment, and disciplined execution to ensure that each investment contributes to a well-diversified and resilient portfolio.</p>
+                <p style="margin-top: 1rem;">Himalayan Ventures and Holdings places strong emphasis on governance, financial discipline, and strategic clarity. Each business activity is undertaken with a commitment to transparency, consistency, and responsible capital management. The company does not pursue expansion beyond its defined sectors; instead, it strengthens its position within them through focused expertise and measured growth.</p>
+                <p style="margin-top: 1rem; font-weight: 500;">With a firm foundation built on diversification and risk-managed strategies, Himalayan Ventures and Holdings aims to create sustainable financial returns while contributing meaningfully to Nepal's economic progress.</p>
             </div>
 
-            <!-- Stats for credibility -->
             <div class="stats">
                 <div class="stat-item"><div class="stat-number" data-target="12">0</div><div class="stat-label">+ Years Experience</div></div>
                 <div class="stat-item"><div class="stat-number" data-target="4">0</div><div class="stat-label">Core Sectors</div></div>
@@ -281,7 +347,7 @@
         </div>
     </section>
 
-    <!-- Services section (Simplified key offerings) -->
+    <!-- Services Section -->
     <section id="services" style="background: var(--light-bg);">
         <div class="container">
             <h2>Our Core Services</h2>
@@ -294,20 +360,20 @@
         </div>
     </section>
 
-    <!-- Core Business Areas (Detailed from document) -->
+    <!-- Core Business Areas -->
     <section id="coreBusiness">
         <div class="container">
             <h2>Core Business Areas</h2>
             <div class="core-grid">
-                <div class="card" style="text-align: left;"><i class="fas fa-chart-simple"></i><h3>📊 Share Market</h3><p>Balanced mix of long-term equity investments and tactical trading. Emphasis on portfolio diversification across sectors to reduce concentration risk, targeting fundamentally sound companies with stable earnings and credible management.</p></div>
-                <div class="card" style="text-align: left;"><i class="fas fa-weight-hanging"></i><h3>🏅 Commodity Market</h3><p>Metals and natural commodities: strategic positioning based on price trends, macro factors, and risk-managed exposure. The company leverages commodity volatility as an investment opportunity while maintaining disciplined controls.</p></div>
-                <div class="card" style="text-align: left;"><i class="fas fa-city"></i><h3>🏢 Real Estate</h3><p>Investment and trading focused on long-term capital appreciation, location advantage, and market demand. Assets selected for strong potential and periodic liquidity events to optimize returns.</p></div>
-                <div class="card" style="text-align: left;"><i class="fas fa-chart-line"></i><h3>🏭 Small & Medium Enterprises</h3><p>Structured investments (equity, debentures) in scalable SMEs with proven business models. Goal: enterprise development, job creation, and alignment with Nepal’s growth trajectory.</p></div>
+                <div class="card" style="text-align: left;"><i class="fas fa-chart-simple"></i><h3>📊 Share Market</h3><p><strong>Equity Investments and Trading:</strong> Balanced mix of long-term equity investments and active trading strategies. Focus on fundamentally sound companies with strong growth potential, stable earnings, and credible management. Emphasis on portfolio diversification across sectors to reduce concentration risk.</p></div>
+                <div class="card" style="text-align: left;"><i class="fas fa-weight-hanging"></i><h3>🏅 Commodity Market</h3><p><strong>Metals and Natural Commodities:</strong> Strategic positioning based on price trends, global demand-supply dynamics, and macroeconomic factors. Disciplined risk controls ensure exposure to commodity price volatility is carefully managed while leveraging opportunities for portfolio diversification.</p></div>
+                <div class="card" style="text-align: left;"><i class="fas fa-city"></i><h3>🏢 Real Estate</h3><p><strong>Investment and Trading:</strong> Long-term value creation focusing on assets with strong appreciation potential. Evaluates opportunities based on location, development potential, and market demand. Balance between stable asset accumulation and liquidity through timely transactions.</p></div>
+                <div class="card" style="text-align: left;"><i class="fas fa-chart-line"></i><h3>🏭 Small & Medium Enterprises</h3><p><strong>SME Investment:</strong> Provides capital through structured investment models including equity participation and debentures. Identifies businesses with scalable potential, sound business models, and capable management, contributing to enterprise development and job creation.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Vision, Mission, Investment Philosophy (Full text from doc) -->
+    <!-- Vision, Mission, Philosophy -->
     <section id="philosophy" class="features">
         <div class="container">
             <h2>Vision, Mission & Philosophy</h2>
@@ -325,7 +391,7 @@
                 <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 28px;">
                     <i class="fas fa-gem" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
                     <h3 style="color:var(--gold);">Investment Philosophy</h3>
-                    <p>Disciplined, structured approach built on diversification, prudent risk assessment, and long-term thinking. We prioritize sustainable growth by balancing high-potential opportunities with stable asset classes.</p>
+                    <p>Disciplined, structured approach built on diversification, careful risk assessment, and long-term thinking. Prioritizing sustainable growth by balancing high-potential opportunities with stable asset classes.</p>
                 </div>
             </div>
 
@@ -337,10 +403,14 @@
         </div>
     </section>
 
-    <!-- Why Choose Himalayan Ventures (from original doc) -->
+    <!-- Why Choose Himalayan Ventures -->
     <section id="why-choose">
         <div class="container">
-            <h2>Why Choose Himalayan Ventures?</h2>
+            <h2>Why Choose Himalayan Ventures and Holdings?</h2>
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                <p>Himalayan Ventures and Holdings stands apart through its clarity of purpose and disciplined execution. The company offers a focused yet diversified investment strategy, ensuring balanced exposure across key sectors of the economy. Its commitment to responsible capital management, transparency, and long-term value creation makes it a dependable partner for sustainable growth.</p>
+                <p style="margin-top: 1rem;">Operating from Kathmandu with a deep understanding of the local economic environment, the company aligns its activities with the broader goal of contributing to Nepal's development while maintaining global investment standards.</p>
+            </div>
             <div class="services-grid">
                 <div class="card"><i class="fas fa-mountain"></i><h3>Clarity of Purpose</h3><p>Focused yet diversified investment strategy across critical economic sectors of Nepal.</p></div>
                 <div class="card"><i class="fas fa-chart-line"></i><h3>Risk-Managed Growth</h3><p>Careful market analysis, prudent risk assessment, and disciplined execution for balanced returns.</p></div>
@@ -351,44 +421,72 @@
         </div>
     </section>
 
-    <!-- Contact & Footer -->
-    <footer id="contact">
+    <!-- Enhanced Footer with Contact, Services, Quick Links, Information Officer (No Images) -->
+    <footer class="main-footer" id="footer-contact">
         <div class="container">
             <div class="footer-grid">
-                <div>
-                    <h4><i class="fas fa-mountain"></i> Himalayan Ventures and Holdings Pvt. Ltd.</h4>
-                    <p>Trade Tower, 5th Floor, New Baneshwor<br>Kathmandu, Nepal</p>
-                    <p><i class="fas fa-phone-alt"></i> +977 1 4567890<br>
-                    <i class="fas fa-envelope"></i> contact@himalayanventures.com.np</p>
+                <!-- Contact Column -->
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone-alt"></i> 01-5919410</p>
+                    <p><i class="fab fa-whatsapp"></i> +977 9767 245 439</p>
+                    <p><i class="fas fa-envelope"></i> info@himalayanventures.com.np</p>
+                    <p><i class="fas fa-envelope"></i> investment@himalayanventures.com.np</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bhakta Marga-04, Baluwatar, Kathmandu, Nepal</p>
                 </div>
-                <div>
-                    <h4>Quick Links</h4>
-                    <ul style="list-style: none; line-height: 2;">
-                        <li><a href="#home" style="color:#dce5f0; text-decoration: none;">Home</a></li>
-                        <li><a href="#services" style="color:#dce5f0; text-decoration: none;">Services</a></li>
-                        <li><a href="#coreBusiness" style="color:#dce5f0; text-decoration: none;">Core Areas</a></li>
-                        <li><a href="#philosophy" style="color:#dce5f0; text-decoration: none;">Philosophy</a></li>
+
+                <!-- Services Column -->
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Portfolio Management</a></li>
+                        <li><a href="#services">Mutual Fund</a></li>
+                        <li><a href="#services">Qualified Institutional Investor (QII)</a></li>
+                        <li><a href="#services">Issue Management</a></li>
+                        <li><a href="#services">Registrar to Share (RTS/RTA)</a></li>
+                        <li><a href="#services">Corporate Advisory</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h4>Connect With Us</h4>
+
+                <!-- Quick Links Column -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://www.nrb.org.np" target="_blank">Nepal Rastra Bank (NRB)</a></li>
+                        <li><a href="https://www.cdsc.com.np" target="_blank">CDS and Clearing Limited</a></li>
+                        <li><a href="https://www.nepalinsurance.com" target="_blank">Nepal Insurance Authority</a></li>
+                        <li><a href="https://www.sebon.gov.np" target="_blank">Securities Board of Nepal (SEBON)</a></li>
+                        <li><a href="https://www.nepalstock.com" target="_blank">Nepal Stock Exchange (NEPSE)</a></li>
+                        <li><a href="#" target="_blank">Targeted Sanction List</a></li>
+                        <li><a href="#" target="_blank">United Nations Security Council Consolidated List</a></li>
+                    </ul>
+                </div>
+
+                <!-- Information Officer Column -->
+                <div class="footer-col">
+                    <h4>Information Officer</h4>
+                    <div class="info-officer">
+                        <h5>Mr. Dipendra Kadariya</h5>
+                        <p>Senior Assistant General Manager</p>
+                        <p><i class="fas fa-phone-alt"></i> 01-5919410</p>
+                        <p><i class="fas fa-envelope"></i> info@himalayanventures.com.np</p>
+                    </div>
                     <div class="social-icons">
                         <i class="fab fa-facebook-f"></i>
                         <i class="fab fa-twitter"></i>
                         <i class="fab fa-linkedin-in"></i>
                         <i class="fab fa-instagram"></i>
                     </div>
-                    <p style="margin-top: 1rem;">We welcome partnership inquiries and strategic dialogue.</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #2c3e66;">
+            <div class="footer-bottom">
                 <p>© 2026 Himalayan Ventures and Holdings Pvt. Ltd. All Rights Reserved. | Driving Long-Term Value in Nepal</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Enhanced Auto Slider with smooth transition
+        // Auto Slider
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         if(slides.length) {
@@ -399,7 +497,7 @@
             }, 6200);
         }
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -412,7 +510,7 @@
             });
         });
 
-        // Counter animation for statistics
+        // Counter animation
         const statNumbers = document.querySelectorAll('.stat-number');
         const animateStats = () => {
             statNumbers.forEach(stat => {
@@ -433,7 +531,6 @@
             });
         };
 
-        // Trigger counters when stats come into view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
@@ -445,7 +542,6 @@
         const statsContainer = document.querySelector('.stats');
         if(statsContainer) observer.observe(statsContainer);
 
-        // if numbers already visible on load (small screens)
         window.addEventListener('load', () => {
             if(statsContainer && statsContainer.getBoundingClientRect().top < window.innerHeight - 100) {
                 animateStats();
