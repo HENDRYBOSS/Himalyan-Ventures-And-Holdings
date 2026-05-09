@@ -7,6 +7,8 @@
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --primary: #003087;
@@ -28,7 +30,13 @@
             width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            animation: slideDown 0.6s ease;
         }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
         nav {
             max-width: 1400px;
             margin: 0 auto;
@@ -39,7 +47,7 @@
             flex-wrap: wrap;
         }
         
-        /* LOGO STYLES - White Background Removed */
+        /* LOGO STYLES */
         .logo {
             display: flex;
             align-items: center;
@@ -49,10 +57,13 @@
             height: 55px;
             width: auto;
             object-fit: contain;
-            /* Remove white background - makes white/light areas transparent */
             mix-blend-mode: multiply;
             background: transparent;
             filter: brightness(1.05) contrast(1.05);
+            transition: transform 0.3s ease;
+        }
+        .logo img:hover {
+            transform: scale(1.05);
         }
         .logo-text {
             display: flex;
@@ -64,6 +75,7 @@
             font-weight: 800;
             letter-spacing: 1px;
             color: var(--gold);
+            animation: fadeInLeft 0.8s ease;
         }
         .logo-sub {
             font-size: 0.65rem;
@@ -89,10 +101,24 @@
             font-weight: 600;
             transition: 0.3s;
             font-size: 1rem;
+            position: relative;
         }
         .nav-links a:hover { color: var(--gold); transform: translateY(-2px); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-        /* Hero Slider */
+        /* Hero Slider Animations */
         .slider {
             height: 100vh;
             position: relative;
@@ -116,6 +142,11 @@
             object-fit: cover;
             object-position: center 30%;
             z-index: 0;
+            animation: zoomIn 8s ease infinite;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
         }
         .slide-content {
             max-width: 1000px;
@@ -130,8 +161,26 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .slide h1 { font-size: 3.6rem; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.7); font-weight: 800; }
-        .slide p { font-size: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.6); font-weight: 500; }
+        .slide h1 { 
+            font-size: 3.6rem; 
+            margin-bottom: 1rem; 
+            text-shadow: 0 4px 20px rgba(0,0,0,0.7); 
+            font-weight: 800;
+            animation: fadeInUp 1s ease;
+        }
+        .slide p { 
+            font-size: 1.5rem; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6); 
+            font-weight: 500;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .btn-outline-light {
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .overlay {
             position: absolute;
             inset: 0;
@@ -158,6 +207,11 @@
             background: var(--accent);
             margin: 0.8rem auto 0;
             border-radius: 4px;
+            animation: expandWidth 0.8s ease;
+        }
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
         }
 
         .bg-light { background: #e8edf5; }
@@ -178,17 +232,38 @@
             border-radius: 28px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             text-align: center;
-            transition: all 0.35s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0,48,135,0.1);
         }
         .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 45px rgba(0,48,135,0.15);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 50px rgba(0,48,135,0.2);
             border-color: var(--gold);
             background: #ffffff;
         }
-        .card i { font-size: 3.2rem; color: var(--primary); margin-bottom: 1.2rem; background: #eef3ff; padding: 0.8rem; border-radius: 60px; }
-        .card h3 { font-size: 1.7rem; margin-bottom: 1rem; color: #002366; }
+        .card i { 
+            font-size: 3.2rem; 
+            color: var(--primary); 
+            margin-bottom: 1.2rem; 
+            background: #eef3ff; 
+            padding: 0.8rem; 
+            border-radius: 60px;
+            transition: all 0.3s ease;
+        }
+        .card:hover i {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--gold);
+            color: white;
+        }
+        .card h3 { 
+            font-size: 1.7rem; 
+            margin-bottom: 1rem; 
+            color: #002366;
+            transition: color 0.3s ease;
+        }
+        .card:hover h3 {
+            color: var(--gold);
+        }
         .card p { color: #3e5a6f; line-height: 1.6; text-align: left; }
 
         .features { 
@@ -211,10 +286,22 @@
             border-radius: 24px;
             text-align: center;
             border: 1px solid rgba(255,215,0,0.3);
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
-        .phil-card:hover { background: rgba(255,255,255,0.2); transform: scale(1.02);}
-        .phil-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+        .phil-card:hover { 
+            background: rgba(255,255,255,0.25); 
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .phil-card i { 
+            font-size: 2.5rem; 
+            color: var(--gold); 
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .phil-card:hover i {
+            transform: scale(1.2) rotate(10deg);
+        }
         .phil-card h4 { font-size: 1.4rem; margin-bottom: 0.8rem; }
 
         .stats {
@@ -232,8 +319,23 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
             min-width: 170px;
             border: 1px solid rgba(0,48,135,0.1);
+            transition: all 0.3s ease;
         }
-        .stat-number { font-size: 2.4rem; font-weight: 800; color: var(--accent); }
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,48,135,0.15);
+            border-color: var(--gold);
+        }
+        .stat-number { 
+            font-size: 2.4rem; 
+            font-weight: 800; 
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+        .stat-item:hover .stat-number {
+            transform: scale(1.1);
+            color: var(--gold);
+        }
         .stat-label { font-weight: 600; color: var(--primary);}
 
         .main-footer {
@@ -265,12 +367,13 @@
         .footer-col ul li a {
             color: #dce5f0;
             text-decoration: none;
-            transition: 0.2s;
+            transition: all 0.3s ease;
             font-size: 0.9rem;
+            display: inline-block;
         }
         .footer-col ul li a:hover {
             color: var(--gold);
-            padding-left: 5px;
+            transform: translateX(5px);
         }
         .footer-col p {
             margin-bottom: 0.6rem;
@@ -278,16 +381,29 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        .footer-col p:hover {
+            transform: translateX(5px);
         }
         .footer-col p i {
             width: 24px;
             color: var(--gold);
+            transition: transform 0.3s ease;
+        }
+        .footer-col p:hover i {
+            transform: scale(1.2);
         }
         .info-officer {
             background: rgba(255,255,255,0.08);
             padding: 1.2rem;
             border-radius: 16px;
             margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .info-officer:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
         }
         .info-officer h5 {
             color: var(--gold);
@@ -301,12 +417,12 @@
         .social-icons i {
             font-size: 1.4rem;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.3s ease;
             color: #dce5f0;
         }
         .social-icons i:hover {
             color: var(--gold);
-            transform: scale(1.1);
+            transform: translateY(-5px) scale(1.2);
         }
         .footer-bottom {
             text-align: center;
@@ -323,6 +439,38 @@
             padding: 1.5rem; 
             border-radius: 48px;
             color: #002366;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .quote-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: #cbd5e8;
+        }
+
+        /* Pulse animation for buttons */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .btn-outline-light {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 28px;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-light:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: pulse 0.5s ease;
         }
 
         @media (max-width: 850px) {
@@ -335,26 +483,11 @@
             .logo img { height: 45px; }
             .logo-main { font-size: 1.1rem; }
         }
-        .btn-outline-light {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 12px 28px;
-            border: 2px solid white;
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .btn-outline-light:hover {
-            background: white;
-            color: var(--primary);
-        }
     </style>
 </head>
 <body>
 
-    <!-- HEADER WITH YOUR LOGO - WHITE BACKGROUND REMOVED -->
+    <!-- HEADER WITH YOUR LOGO -->
     <header>
         <nav>
             <div class="logo">
@@ -406,11 +539,11 @@
         </div>
     </div>
 
-    <!-- About Section -->
+    <!-- About Section with AOS Animations -->
     <section id="about" class="bg-light">
         <div class="container">
-            <h2>Company Overview</h2>
-            <div style="max-width: 1100px; margin: 0 auto;">
+            <h2 data-aos="fade-up">Company Overview</h2>
+            <div style="max-width: 1100px; margin: 0 auto;" data-aos="fade-up" data-aos-delay="100">
                 <p style="font-size: 1.1rem; text-align: center; margin-bottom: 1.5rem;"><strong>Himalayan Ventures and Holdings</strong> is a Nepal-based investment and trading company dedicated to building long-term value through disciplined capital allocation across key economic sectors. Rooted in the resilience and strength symbolized by the Himalayas, the company operates with a clear and focused mandate: to invest and trade exclusively in the <strong>share market, commodity market, real estate, and small and medium enterprises (SMEs)</strong>.</p>
                 <p style="margin-top: 1rem;">With a strategic emphasis on diversification and risk-managed growth, Himalayan Ventures and Holdings seeks to create sustainable financial returns while contributing meaningfully to Nepal's evolving economic landscape. The company approaches every investment with prudence, foresight, and a commitment to long-term prosperity.</p>
                 <p style="margin-top: 1rem;">The company is structured to function as a strategic investment holding entity, deploying capital across multiple asset classes with the objective of achieving balanced growth and financial stability. By actively engaging in both investment and trading activities, Himalayan Ventures and Holdings maintains the flexibility to respond to evolving market conditions while preserving a long-term perspective.</p>
@@ -419,7 +552,7 @@
                 <p style="margin-top: 1rem; font-weight: 500;">With a firm foundation built on diversification and risk-managed strategies, Himalayan Ventures and Holdings aims to create sustainable financial returns while contributing meaningfully to Nepal's economic progress.</p>
             </div>
 
-            <div class="stats">
+            <div class="stats" data-aos="fade-up" data-aos-delay="200">
                 <div class="stat-item"><div class="stat-number" data-target="12">0</div><div class="stat-label">+ Years Experience</div></div>
                 <div class="stat-item"><div class="stat-number" data-target="4">0</div><div class="stat-label">Core Sectors</div></div>
                 <div class="stat-item"><div class="stat-number" data-target="25">0</div><div class="stat-label">+ Portfolio Companies</div></div>
@@ -430,12 +563,12 @@
     <!-- Services Section -->
     <section id="services" class="bg-white-alt">
         <div class="container">
-            <h2>Our Core Services</h2>
+            <h2 data-aos="fade-up">Our Core Services</h2>
             <div class="services-grid">
-                <div class="card"><i class="fas fa-chart-line"></i><h3>Share Market</h3><p>Long-term equity investments & active trading in fundamentally sound companies with strong growth potential. Diversified portfolio across Nepal's capital markets.</p></div>
-                <div class="card"><i class="fas fa-coins"></i><h3>Commodity Market</h3><p>Strategic positioning in metals and natural commodities using global demand-supply dynamics and disciplined risk controls to preserve value.</p></div>
-                <div class="card"><i class="fas fa-building"></i><h3>Real Estate</h3><p>Long-term value creation through high-appreciation assets and selective property trading, balancing stability and liquidity.</p></div>
-                <div class="card"><i class="fas fa-handshake"></i><h3>SME Investment</h3><p>Equity participation and debentures for scalable Nepalese enterprises, fostering job creation and sustainable returns.</p></div>
+                <div class="card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-chart-line"></i><h3>Share Market</h3><p>Long-term equity investments & active trading in fundamentally sound companies with strong growth potential. Diversified portfolio across Nepal's capital markets.</p></div>
+                <div class="card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-coins"></i><h3>Commodity Market</h3><p>Strategic positioning in metals and natural commodities using global demand-supply dynamics and disciplined risk controls to preserve value.</p></div>
+                <div class="card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-building"></i><h3>Real Estate</h3><p>Long-term value creation through high-appreciation assets and selective property trading, balancing stability and liquidity.</p></div>
+                <div class="card" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-handshake"></i><h3>SME Investment</h3><p>Equity participation and debentures for scalable Nepalese enterprises, fostering job creation and sustainable returns.</p></div>
             </div>
         </div>
     </section>
@@ -443,12 +576,12 @@
     <!-- Core Business Areas -->
     <section id="coreBusiness" class="bg-blue-light">
         <div class="container">
-            <h2>Core Business Areas</h2>
+            <h2 data-aos="fade-up">Core Business Areas</h2>
             <div class="core-grid">
-                <div class="card" style="text-align: left;"><i class="fas fa-chart-simple"></i><h3>📊 Share Market</h3><p><strong>Equity Investments and Trading:</strong> Balanced mix of long-term equity investments and active trading strategies. Focus on fundamentally sound companies with strong growth potential, stable earnings, and credible management. Emphasis on portfolio diversification across sectors to reduce concentration risk.</p></div>
-                <div class="card" style="text-align: left;"><i class="fas fa-weight-hanging"></i><h3>🏅 Commodity Market</h3><p><strong>Metals and Natural Commodities:</strong> Strategic positioning based on price trends, global demand-supply dynamics, and macroeconomic factors. Disciplined risk controls ensure exposure to commodity price volatility is carefully managed while leveraging opportunities for portfolio diversification.</p></div>
-                <div class="card" style="text-align: left;"><i class="fas fa-city"></i><h3>🏢 Real Estate</h3><p><strong>Investment and Trading:</strong> Long-term value creation focusing on assets with strong appreciation potential. Evaluates opportunities based on location, development potential, and market demand. Balance between stable asset accumulation and liquidity through timely transactions.</p></div>
-                <div class="card" style="text-align: left;"><i class="fas fa-chart-line"></i><h3>🏭 Small & Medium Enterprises</h3><p><strong>SME Investment:</strong> Provides capital through structured investment models including equity participation and debentures. Identifies businesses with scalable potential, sound business models, and capable management, contributing to enterprise development and job creation.</p></div>
+                <div class="card" style="text-align: left;" data-aos="flip-left" data-aos-delay="100"><i class="fas fa-chart-simple"></i><h3>📊 Share Market</h3><p><strong>Equity Investments and Trading:</strong> Balanced mix of long-term equity investments and active trading strategies. Focus on fundamentally sound companies with strong growth potential, stable earnings, and credible management. Emphasis on portfolio diversification across sectors to reduce concentration risk.</p></div>
+                <div class="card" style="text-align: left;" data-aos="flip-left" data-aos-delay="200"><i class="fas fa-weight-hanging"></i><h3>🏅 Commodity Market</h3><p><strong>Metals and Natural Commodities:</strong> Strategic positioning based on price trends, global demand-supply dynamics, and macroeconomic factors. Disciplined risk controls ensure exposure to commodity price volatility is carefully managed while leveraging opportunities for portfolio diversification.</p></div>
+                <div class="card" style="text-align: left;" data-aos="flip-left" data-aos-delay="300"><i class="fas fa-city"></i><h3>🏢 Real Estate</h3><p><strong>Investment and Trading:</strong> Long-term value creation focusing on assets with strong appreciation potential. Evaluates opportunities based on location, development potential, and market demand. Balance between stable asset accumulation and liquidity through timely transactions.</p></div>
+                <div class="card" style="text-align: left;" data-aos="flip-left" data-aos-delay="400"><i class="fas fa-chart-line"></i><h3>🏭 Small & Medium Enterprises</h3><p><strong>SME Investment:</strong> Provides capital through structured investment models including equity participation and debentures. Identifies businesses with scalable potential, sound business models, and capable management, contributing to enterprise development and job creation.</p></div>
             </div>
         </div>
     </section>
@@ -456,28 +589,28 @@
     <!-- Philosophy Section -->
     <section id="philosophy" class="features">
         <div class="container">
-            <h2>Vision, Mission & Philosophy</h2>
+            <h2 data-aos="fade-up">Vision, Mission & Philosophy</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;">
+                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;" data-aos="fade-right" data-aos-delay="100">
                     <i class="fas fa-eye" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
                     <h3 style="color:var(--gold);">Vision</h3>
                     <p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal.</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;">
+                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-bullseye" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
                     <h3 style="color:var(--gold);">Mission</h3>
                     <p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;">
+                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;" data-aos="fade-left" data-aos-delay="300">
                     <i class="fas fa-gem" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
                     <h3 style="color:var(--gold);">Investment Philosophy</h3>
                     <p>Disciplined, structured approach built on diversification, careful risk assessment, and long-term thinking. Prioritizing sustainable growth by balancing high-potential opportunities with stable asset classes.</p>
                 </div>
             </div>
             <div class="philosophy-grid" style="margin-top: 3rem;">
-                <div class="phil-card"><i class="fas fa-chart-pie"></i><h4>Diversification First</h4><p>Balanced exposure across share market, commodities, real estate, and SMEs to mitigate volatility.</p></div>
-                <div class="phil-card"><i class="fas fa-clock"></i><h4>Long-Term Horizon</h4><p>Resisting short-term speculation; focused on compounding and structural growth.</p></div>
-                <div class="phil-card"><i class="fas fa-shield-alt"></i><h4>Transparency & Governance</h4><p>High standards of accountability, risk management and responsible capital allocation.</p></div>
+                <div class="phil-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-chart-pie"></i><h4>Diversification First</h4><p>Balanced exposure across share market, commodities, real estate, and SMEs to mitigate volatility.</p></div>
+                <div class="phil-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-clock"></i><h4>Long-Term Horizon</h4><p>Resisting short-term speculation; focused on compounding and structural growth.</p></div>
+                <div class="phil-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-shield-alt"></i><h4>Transparency & Governance</h4><p>High standards of accountability, risk management and responsible capital allocation.</p></div>
             </div>
         </div>
     </section>
@@ -485,18 +618,18 @@
     <!-- Why Choose Section -->
     <section id="why-choose" class="bg-gray-light">
         <div class="container">
-            <h2>Why Choose Himalayan Ventures and Holdings?</h2>
-            <div style="max-width: 1000px; margin: 0 auto; text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+            <h2 data-aos="fade-up">Why Choose Himalayan Ventures and Holdings?</h2>
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center; font-size: 1.1rem; margin-bottom: 2rem;" data-aos="fade-up" data-aos-delay="100">
                 <p>Himalayan Ventures and Holdings stands apart through its clarity of purpose and disciplined execution. The company offers a focused yet diversified investment strategy, ensuring balanced exposure across key sectors of the economy. Its commitment to responsible capital management, transparency, and long-term value creation makes it a dependable partner for sustainable growth.</p>
                 <p style="margin-top: 1rem;">Operating from Kathmandu with a deep understanding of the local economic environment, the company aligns its activities with the broader goal of contributing to Nepal's development while maintaining global investment standards.</p>
             </div>
             <div class="services-grid">
-                <div class="card"><i class="fas fa-mountain"></i><h3>Clarity of Purpose</h3><p>Focused yet diversified investment strategy across critical economic sectors of Nepal.</p></div>
-                <div class="card"><i class="fas fa-chart-line"></i><h3>Risk-Managed Growth</h3><p>Careful market analysis, prudent risk assessment, and disciplined execution for balanced returns.</p></div>
-                <div class="card"><i class="fas fa-hand-holding-usd"></i><h3>Deep Local Expertise</h3><p>Rooted in Kathmandu with global standards, leveraging local economic insights for superior decisions.</p></div>
-                <div class="card"><i class="fas fa-leaf"></i><h3>Contribution to Nepal</h3><p>Supporting enterprise development, job creation, and capital formation for a resilient economy.</p></div>
+                <div class="card" data-aos="flip-right" data-aos-delay="100"><i class="fas fa-mountain"></i><h3>Clarity of Purpose</h3><p>Focused yet diversified investment strategy across critical economic sectors of Nepal.</p></div>
+                <div class="card" data-aos="flip-right" data-aos-delay="200"><i class="fas fa-chart-line"></i><h3>Risk-Managed Growth</h3><p>Careful market analysis, prudent risk assessment, and disciplined execution for balanced returns.</p></div>
+                <div class="card" data-aos="flip-right" data-aos-delay="300"><i class="fas fa-hand-holding-usd"></i><h3>Deep Local Expertise</h3><p>Rooted in Kathmandu with global standards, leveraging local economic insights for superior decisions.</p></div>
+                <div class="card" data-aos="flip-right" data-aos-delay="400"><i class="fas fa-leaf"></i><h3>Contribution to Nepal</h3><p>Supporting enterprise development, job creation, and capital formation for a resilient economy.</p></div>
             </div>
-            <div class="quote-box">
+            <div class="quote-box" data-aos="zoom-in-up" data-aos-delay="500">
                 "Rather than pursuing short-term gains, Himalayan Ventures prioritizes sustainable growth — balancing high-potential opportunities with stable asset classes, guided by thorough analysis and clear market dynamics."
             </div>
         </div>
@@ -506,7 +639,7 @@
     <footer class="main-footer" id="footer-contact">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-right">
                     <h4>Contact</h4>
                     <p><i class="fas fa-phone-alt"></i> 01-5919410</p>
                     <p><i class="fab fa-whatsapp"></i> +977 9767 245 439</p>
@@ -514,7 +647,7 @@
                     <p><i class="fas fa-envelope"></i> investment@himalayanventures.com.np</p>
                     <p><i class="fas fa-map-marker-alt"></i> Bhakta Marga-04, Baluwatar, Kathmandu, Nepal</p>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up">
                     <h4>Services</h4>
                     <ul>
                         <li><a href="#services">Portfolio Management</a></li>
@@ -525,7 +658,7 @@
                         <li><a href="#services">Corporate Advisory</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="https://www.nrb.org.np" target="_blank">Nepal Rastra Bank (NRB)</a></li>
@@ -534,7 +667,7 @@
                         <li><a href="https://www.nepalstock.com" target="_blank">Nepal Stock Exchange (NEPSE)</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" data-aos="fade-left">
                     <h4>Information Officer</h4>
                     <div class="info-officer">
                         <h5>Mr. Dipendra Kadariya</h5>
@@ -550,13 +683,21 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom" data-aos="fade-up">
                 <p>© 2026 Himalayan Ventures and Holdings Pvt. Ltd. All Rights Reserved. | Driving Long-Term Value in Nepal</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
         // Auto Slider
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
