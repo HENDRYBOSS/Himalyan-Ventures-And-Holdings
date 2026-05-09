@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Himalayan Ventures and Holdings Pvt. Ltd. | Strategic Investment Nepal</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
@@ -28,22 +30,46 @@
         nav {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
         }
+        /* Logo Styles with Image */
         .logo {
-            font-size: 1.7rem;
-            font-weight: bold;
             display: flex;
             align-items: center;
             gap: 12px;
-            letter-spacing: -0.5px;
         }
-        .logo i { font-size: 2rem; color: var(--gold); }
-        .logo span { font-size: 0.7rem; font-weight: normal; display: inline-block; margin-left: 8px; }
+        .logo img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .logo-main {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--gold);
+        }
+        .logo-sub {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+        .logo-sub2 {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #cce0ff;
+        }
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -58,7 +84,7 @@
         }
         .nav-links a:hover { color: var(--gold); transform: translateY(-2px); display: inline-block; }
 
-        /* Hero Slider */
+        /* Hero Slider using img tags */
         .slider {
             height: 100vh;
             position: relative;
@@ -68,15 +94,22 @@
         .slide {
             position: absolute;
             inset: 0;
-            background-size: cover;
-            background-position: center 30%;
             opacity: 0;
             transition: opacity 1.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             display: flex;
             align-items: center;
+            justify-content: center;
             color: white;
         }
         .slide.active { opacity: 1; z-index: 2; }
+        .slide img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            z-index: 0;
+        }
         .slide-content {
             max-width: 1000px;
             margin: 0 auto;
@@ -256,6 +289,8 @@
             .slide p { font-size: 1.2rem; }
             h2 { font-size: 2rem; }
             section { padding: 70px 0; }
+            .logo img { height: 45px; }
+            .logo-main { font-size: 1rem; }
         }
         @media (max-width: 550px) {
             .nav-links { gap: 1rem; }
@@ -280,13 +315,16 @@
 </head>
 <body>
 
-    <!-- Sticky Header -->
+    <!-- Sticky Header with Logo Image -->
     <header>
         <nav>
             <div class="logo">
-                <i class="fas fa-mountain"></i> 
-                Himalayan Ventures
-                <span>And Holdings Pvt. Ltd.</span>
+                <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures and Holdings Logo">
+                <div class="logo-text">
+                    <div class="logo-main">HIMALAYAN</div>
+                    <div class="logo-sub">VENTURES AND HOLDINGS</div>
+                    <div class="logo-sub2">PVT. LTD</div>
+                </div>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -299,9 +337,10 @@
         </nav>
     </header>
 
-    <!-- Hero Slider -->
+    <!-- Hero Slider using img tags -->
     <div class="slider" id="home">
-        <div class="slide active" style="background-image: url('https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=1600'); background-position: center 40%;">
+        <div class="slide active">
+            <img src="WhatsApp Image 2026-03-23 at 7.47.15 PM.jpeg" alt="Himalayan Ventures Slider 1">
             <div class="overlay"></div>
             <div class="slide-content">
                 <h1>Himalayan Ventures & Holdings Pvt. Ltd.</h1>
@@ -309,7 +348,8 @@
                 <a href="#about" class="btn-outline-light">Discover Our Vision <i class="fas fa-arrow-down"></i></a>
             </div>
         </div>
-        <div class="slide" style="background-image: url('https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+        <div class="slide">
+            <img src="WhatsApp Image 2026-03-23 at 7.47.15 PM.jpeg" alt="Himalayan Ventures Slider 2">
             <div class="overlay"></div>
             <div class="slide-content">
                 <h1>Disciplined Capital Allocation</h1>
@@ -317,7 +357,8 @@
                 <a href="#coreBusiness" class="btn-outline-light">Explore Sectors <i class="fas fa-chart-line"></i></a>
             </div>
         </div>
-        <div class="slide" style="background-image: url('https://images.pexels.com/photos/4218883/pexels-photo-4218883.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+        <div class="slide">
+            <img src="WhatsApp Image 2026-03-23 at 7.47.15 PM.jpeg" alt="Himalayan Ventures Slider 3">
             <div class="overlay"></div>
             <div class="slide-content">
                 <h1>Rooted in the Himalayas<br>Focused on Growth</h1>
@@ -421,11 +462,10 @@
         </div>
     </section>
 
-    <!-- Enhanced Footer with Contact, Services, Quick Links, Information Officer (No Images) -->
+    <!-- Enhanced Footer with Contact, Services, Quick Links, Information Officer -->
     <footer class="main-footer" id="footer-contact">
         <div class="container">
             <div class="footer-grid">
-                <!-- Contact Column -->
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <p><i class="fas fa-phone-alt"></i> 01-5919410</p>
@@ -434,8 +474,6 @@
                     <p><i class="fas fa-envelope"></i> investment@himalayanventures.com.np</p>
                     <p><i class="fas fa-map-marker-alt"></i> Bhakta Marga-04, Baluwatar, Kathmandu, Nepal</p>
                 </div>
-
-                <!-- Services Column -->
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul>
@@ -447,8 +485,6 @@
                         <li><a href="#services">Corporate Advisory</a></li>
                     </ul>
                 </div>
-
-                <!-- Quick Links Column -->
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -461,8 +497,6 @@
                         <li><a href="#" target="_blank">United Nations Security Council Consolidated List</a></li>
                     </ul>
                 </div>
-
-                <!-- Information Officer Column -->
                 <div class="footer-col">
                     <h4>Information Officer</h4>
                     <div class="info-officer">
