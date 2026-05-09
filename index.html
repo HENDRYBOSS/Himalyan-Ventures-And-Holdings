@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Himalayan Ventures and Holdings Pvt. Ltd. | Strategic Investment Nepal</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg">
+    <!-- Favicon - Using the logo with transparent background treatment -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23003087' rx='30'/%3E%3Ctext x='100' y='85' font-size='22' font-family='Arial, sans-serif' font-weight='bold' fill='%23D4AF37' text-anchor='middle'%3EHIMALAYAN%3C/text%3E%3Ctext x='100' y='115' font-size='16' font-family='Arial, sans-serif' font-weight='bold' fill='%23D4AF37' text-anchor='middle'%3EVENTURES%3C/text%3E%3Ctext x='100' y='140' font-size='12' font-family='Arial, sans-serif' fill='%23FFFFFF' text-anchor='middle'%3EAND HOLDINGS%3C/text%3E%3Ctext x='100' y='160' font-size='14' font-family='Arial, sans-serif' font-weight='bold' fill='%23D4AF37' text-anchor='middle'%3EPVT. LTD%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
@@ -36,7 +36,7 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        /* Logo Styles with Image */
+        /* Logo Styles with Image - White Background Removed using mix-blend-mode */
         .logo {
             display: flex;
             align-items: center;
@@ -46,6 +46,16 @@
             height: 55px;
             width: auto;
             object-fit: contain;
+            /* Remove white background - makes white/light areas transparent */
+            mix-blend-mode: multiply;
+            background: transparent;
+            filter: brightness(1.05) contrast(1.05);
+        }
+        /* Fallback for browsers that don't support mix-blend-mode */
+        @supports not (mix-blend-mode: multiply) {
+            .logo img {
+                background: transparent;
+            }
         }
         .logo-text {
             display: flex;
@@ -315,11 +325,11 @@
 </head>
 <body>
 
-    <!-- Sticky Header with Logo Image -->
+    <!-- Sticky Header with Logo Image - White Background Removed -->
     <header>
         <nav>
             <div class="logo">
-                <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures and Holdings Logo">
+                <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures and Holdings Logo" style="mix-blend-mode: multiply;">
                 <div class="logo-text">
                     <div class="logo-main">HIMALAYAN</div>
                     <div class="logo-sub">VENTURES AND HOLDINGS</div>
