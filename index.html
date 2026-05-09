@@ -12,6 +12,7 @@
             --primary: #003087;
             --accent: #c8102e;
             --gold: #D4AF37;
+            --logo-gold: #E8B832;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body { 
@@ -39,7 +40,7 @@
             flex-wrap: wrap;
         }
         
-        /* LOGO STYLES - White Background Removed */
+        /* LOGO STYLES */
         .logo {
             display: flex;
             align-items: center;
@@ -49,10 +50,24 @@
             height: 55px;
             width: auto;
             object-fit: contain;
-            /* Remove white background - makes white/light areas transparent */
             mix-blend-mode: multiply;
             background: transparent;
             filter: brightness(1.05) contrast(1.05);
+        }
+        /* Mountain Icon - Color matched to logo golden color */
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #E8B832, #D4AF37);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .logo-icon i {
+            font-size: 28px;
+            color: #003087;
         }
         .logo-text {
             display: flex;
@@ -333,6 +348,8 @@
             h2 { font-size: 2rem; }
             section { padding: 60px 0; }
             .logo img { height: 45px; }
+            .logo-icon { width: 40px; height: 40px; }
+            .logo-icon i { font-size: 22px; }
             .logo-main { font-size: 1.1rem; }
         }
         .btn-outline-light {
@@ -354,11 +371,16 @@
 </head>
 <body>
 
-    <!-- HEADER WITH YOUR LOGO - WHITE BACKGROUND REMOVED -->
+    <!-- HEADER WITH LOGO AND ENHANCED MOUNTAIN ICON -->
     <header>
         <nav>
             <div class="logo">
+                <!-- Your Logo Image -->
                 <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures Logo" style="mix-blend-mode: multiply;">
+                <!-- Enhanced Mountain Icon - Color matched to logo -->
+                <div class="logo-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
                 <div class="logo-text">
                     <div class="logo-main">HIMALAYAN</div>
                     <div class="logo-sub">VENTURES AND HOLDINGS</div>
