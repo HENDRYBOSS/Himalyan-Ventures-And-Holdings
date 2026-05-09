@@ -14,6 +14,7 @@
             --primary: #003087;
             --accent: #c8102e;
             --gold: #D4AF37;
+            --whatsapp: #25D366;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body { 
@@ -473,6 +474,102 @@
             animation: pulse 0.5s ease;
         }
 
+        /* ===== FLOATING BUTTONS STYLES ===== */
+        /* Go to Top Button - Bottom */
+        .go-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), #00205e);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            border: 2px solid var(--gold);
+        }
+        .go-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .go-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: linear-gradient(135deg, #00205e, var(--primary));
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        .go-to-top i {
+            font-size: 24px;
+            animation: bounceUp 1.5s ease infinite;
+        }
+        @keyframes bounceUp {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* WhatsApp Floating Button - Above Up Arrow */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            animation: pulseWhatsApp 1.5s ease infinite;
+        }
+        @keyframes pulseWhatsApp {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* WhatsApp Tooltip */
+        .whatsapp-tooltip {
+            position: fixed;
+            bottom: 100px;
+            right: 85px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .whatsapp-float:hover + .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10px);
+        }
+
         @media (max-width: 850px) {
             nav { flex-direction: column; gap: 1rem; text-align: center; }
             .nav-links { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
@@ -482,6 +579,17 @@
             section { padding: 60px 0; }
             .logo img { height: 45px; }
             .logo-main { font-size: 1.1rem; }
+            .go-to-top { width: 45px; height: 45px; bottom: 15px; right: 15px; }
+            .go-to-top i { font-size: 20px; }
+            .whatsapp-float { width: 50px; height: 50px; bottom: 80px; right: 15px; }
+            .whatsapp-float i { font-size: 28px; }
+            .whatsapp-tooltip { bottom: 90px; right: 75px; font-size: 10px; }
+        }
+        @media (max-width: 550px) {
+            .whatsapp-float { width: 45px; height: 45px; bottom: 75px; }
+            .whatsapp-float i { font-size: 24px; }
+            .go-to-top { width: 40px; height: 40px; }
+            .go-to-top i { font-size: 18px; }
         }
     </style>
 </head>
@@ -539,7 +647,7 @@
         </div>
     </div>
 
-    <!-- About Section with AOS Animations -->
+    <!-- About Section -->
     <section id="about" class="bg-light">
         <div class="container">
             <h2 data-aos="fade-up">Company Overview</h2>
@@ -635,16 +743,15 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with Updated Contact Info -->
     <footer class="main-footer" id="footer-contact">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col" data-aos="fade-right">
                     <h4>Contact</h4>
-                    <p><i class="fas fa-phone-alt"></i> 01-5919410</p>
-                    <p><i class="fab fa-whatsapp"></i> +977 9767 245 439</p>
-                    <p><i class="fas fa-envelope"></i> info@himalayanventures.com.np</p>
-                    <p><i class="fas fa-envelope"></i> investment@himalayanventures.com.np</p>
+                    <p><i class="fas fa-phone-alt"></i> +977 9743964252</p>
+                    <p><i class="fab fa-whatsapp"></i> +977 9743964252</p>
+                    <p><i class="fas fa-envelope"></i> himalayanventuresandholdings@gmail.com</p>
                     <p><i class="fas fa-map-marker-alt"></i> Bhakta Marga-04, Baluwatar, Kathmandu, Nepal</p>
                 </div>
                 <div class="footer-col" data-aos="fade-up">
@@ -672,8 +779,8 @@
                     <div class="info-officer">
                         <h5>Mr. Dipendra Kadariya</h5>
                         <p>Senior Assistant General Manager</p>
-                        <p><i class="fas fa-phone-alt"></i> 01-5919410</p>
-                        <p><i class="fas fa-envelope"></i> info@himalayanventures.com.np</p>
+                        <p><i class="fas fa-phone-alt"></i> +977 9743964252</p>
+                        <p><i class="fas fa-envelope"></i> himalayanventuresandholdings@gmail.com</p>
                     </div>
                     <div class="social-icons">
                         <i class="fab fa-facebook-f"></i>
@@ -688,6 +795,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- ===== FLOATING BUTTONS ===== -->
+    <!-- WhatsApp Floating Button (Top position) - Updated Number -->
+    <a href="https://wa.me/9779743964252" class="whatsapp-float" id="whatsappBtn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+
+    <!-- Go to Top Button (Bottom position - below WhatsApp) -->
+    <div class="go-to-top" id="goToTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -709,7 +828,7 @@
             }, 6000);
         }
 
-        // Smooth scrolling
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -722,7 +841,7 @@
             });
         });
 
-        // Counter animation
+        // Counter animation for statistics
         const statNumbers = document.querySelectorAll('.stat-number');
         const animateStats = () => {
             statNumbers.forEach(stat => {
@@ -753,6 +872,28 @@
         }, { threshold: 0.4 });
         const statsContainer = document.querySelector('.stats');
         if(statsContainer) observer.observe(statsContainer);
+
+        // ===== GO TO TOP BUTTON FUNCTIONALITY =====
+        const goToTopBtn = document.getElementById('goToTopBtn');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                goToTopBtn.classList.add('show');
+            } else {
+                goToTopBtn.classList.remove('show');
+            }
+        });
+        
+        goToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        console.log('Floating buttons ready - WhatsApp above Up Arrow');
+        console.log('WhatsApp Number: +977 9743964252');
+        console.log('Email: himalayanventuresandholdings@gmail.com');
     </script>
 </body>
 </html>
