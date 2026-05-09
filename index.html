@@ -444,6 +444,35 @@
         }
         .stat-label { font-weight: 600; color: var(--primary);}
 
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .vision-card, .mission-card {
+            background: white;
+            border-radius: 28px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .vision-card:hover, .mission-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+        }
+        .vision-card i, .mission-card i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .vision-card h3, .mission-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
         .main-footer {
             background: #0a1428;
             color: #dce5f0;
@@ -698,7 +727,7 @@
         </nav>
     </header>
 
-    <!-- MAIN CONTENT (Homepage with all sections) -->
+    <!-- MAIN CONTENT (Homepage) -->
     <div id="mainContent" class="main-content">
         <!-- HERO SLIDER -->
         <div class="slider" id="home">
@@ -730,8 +759,8 @@
             </div>
         </div>
 
-        <!-- About Section -->
-        <section id="aboutSection" class="bg-light">
+        <!-- SECTION 1: Company Overview -->
+        <section class="bg-light">
             <div class="container">
                 <h2 data-aos="fade-up">Company Overview</h2>
                 <div data-aos="fade-up" data-aos-delay="100" style="max-width: 1100px; margin: 0 auto;">
@@ -739,6 +768,7 @@
                     <p style="margin-top: 1rem;">With a strategic emphasis on diversification and risk-managed growth, Himalayan Ventures and Holdings seeks to create sustainable financial returns while contributing meaningfully to Nepal's evolving economic landscape. The company approaches every investment with prudence, foresight, and a commitment to long-term prosperity.</p>
                     <p style="margin-top: 1rem;">The company is structured to function as a strategic investment holding entity, deploying capital across multiple asset classes with the objective of achieving balanced growth and financial stability. By actively engaging in both investment and trading activities, Himalayan Ventures and Holdings maintains the flexibility to respond to evolving market conditions while preserving a long-term perspective.</p>
                     <p style="margin-top: 1rem;">Operating from Kathmandu, the company aligns its activities with Nepal's economic landscape, recognizing the importance of capital formation, efficient markets, and enterprise development. Its approach integrates careful market analysis, prudent risk assessment, and disciplined execution to ensure that each investment contributes to a well-diversified and resilient portfolio.</p>
+                    <p style="margin-top: 1rem;">Himalayan Ventures and Holdings places strong emphasis on governance, financial discipline, and strategic clarity. Each business activity is undertaken with a commitment to transparency, consistency, and responsible capital management. The company does not pursue expansion beyond its defined sectors; instead, it strengthens its position within them through focused expertise and measured growth.</p>
                     <p style="margin-top: 1rem; font-weight: 500;">With a firm foundation built on diversification and risk-managed strategies, Himalayan Ventures and Holdings aims to create sustainable financial returns while contributing meaningfully to Nepal's economic progress.</p>
                 </div>
                 <div class="stats" data-aos="fade-up" data-aos-delay="200">
@@ -749,21 +779,27 @@
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="servicesSection" class="bg-white-alt">
+        <!-- SECTION 2: Vision & Mission -->
+        <section class="bg-white-alt">
             <div class="container">
-                <h2 data-aos="fade-up">Our Core Services</h2>
-                <div class="services-grid">
-                    <div class="card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-chart-line"></i><h3>Share Market</h3><p>Long-term equity investments & active trading in fundamentally sound companies with strong growth potential. Diversified portfolio across Nepal's capital markets.</p></div>
-                    <div class="card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-coins"></i><h3>Commodity Market</h3><p>Strategic positioning in metals and natural commodities using global demand-supply dynamics and disciplined risk controls to preserve value.</p></div>
-                    <div class="card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-building"></i><h3>Real Estate</h3><p>Long-term value creation through high-appreciation assets and selective property trading, balancing stability and liquidity.</p></div>
-                    <div class="card" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-handshake"></i><h3>SME Investment</h3><p>Equity participation and debentures for scalable Nepalese enterprises, fostering job creation and sustainable returns.</p></div>
+                <h2 data-aos="fade-up">Vision & Mission</h2>
+                <div class="vision-mission-grid" data-aos="fade-up" data-aos-delay="100">
+                    <div class="vision-card">
+                        <i class="fas fa-eye"></i>
+                        <h3>Our Vision</h3>
+                        <p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal.</p>
+                    </div>
+                    <div class="mission-card">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Our Mission</h3>
+                        <p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Core Business Areas -->
-        <section id="coreSection" class="bg-blue-light">
+        <!-- SECTION 3: Core Business Areas -->
+        <section class="bg-blue-light">
             <div class="container">
                 <h2 data-aos="fade-up">Core Business Areas</h2>
                 <div class="core-grid">
@@ -775,37 +811,24 @@
             </div>
         </section>
 
-        <!-- Philosophy Section -->
-        <section id="philosophySection" class="features">
+        <!-- SECTION 4: Philosophy -->
+        <section class="features">
             <div class="container">
-                <h2 data-aos="fade-up">Vision, Mission & Philosophy</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;" data-aos="fade-right" data-aos-delay="100">
-                        <i class="fas fa-eye" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
-                        <h3 style="color:var(--gold);">Vision</h3>
-                        <p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal.</p>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;" data-aos="fade-up" data-aos-delay="200">
-                        <i class="fas fa-bullseye" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
-                        <h3 style="color:var(--gold);">Mission</h3>
-                        <p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;" data-aos="fade-left" data-aos-delay="300">
-                        <i class="fas fa-gem" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
-                        <h3 style="color:var(--gold);">Investment Philosophy</h3>
-                        <p>Disciplined, structured approach built on diversification, careful risk assessment, and long-term thinking. Prioritizing sustainable growth.</p>
-                    </div>
+                <h2 data-aos="fade-up">Investment Philosophy</h2>
+                <div data-aos="fade-up" data-aos-delay="100" style="max-width: 1000px; margin: 0 auto; text-align: center; margin-bottom: 2rem;">
+                    <p style="font-size: 1.1rem;">Himalayan Ventures and Holdings follows a disciplined and structured investment approach built on diversification, careful risk assessment, and long-term thinking. Rather than pursuing short-term gains, the company prioritizes sustainable growth by balancing high-potential opportunities with stable asset classes.</p>
+                    <p style="margin-top: 1rem;">Every investment decision is guided by thorough analysis, prudent risk management, and a clear understanding of market dynamics. By maintaining a diversified portfolio across multiple sectors, the company mitigates exposure while enhancing resilience against market fluctuations.</p>
                 </div>
-                <div class="philosophy-grid" style="margin-top: 3rem;">
-                    <div class="phil-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-chart-pie"></i><h4>Diversification First</h4><p>Balanced exposure across share market, commodities, real estate, and SMEs.</p></div>
+                <div class="philosophy-grid" style="margin-top: 2rem;">
+                    <div class="phil-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-chart-pie"></i><h4>Diversification First</h4><p>Balanced exposure across share market, commodities, real estate, and SMEs to mitigate volatility.</p></div>
                     <div class="phil-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-clock"></i><h4>Long-Term Horizon</h4><p>Resisting short-term speculation; focused on compounding and structural growth.</p></div>
                     <div class="phil-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-shield-alt"></i><h4>Transparency & Governance</h4><p>High standards of accountability, risk management and responsible capital allocation.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- Why Choose Section -->
-        <section id="whySection" class="bg-gray-light">
+        <!-- SECTION 5: Why Choose Us -->
+        <section class="bg-gray-light">
             <div class="container">
                 <h2 data-aos="fade-up">Why Choose Himalayan Ventures and Holdings?</h2>
                 <div data-aos="fade-up" data-aos-delay="100" style="max-width: 1000px; margin: 0 auto; text-align: center; margin-bottom: 2rem;">
@@ -1055,18 +1078,14 @@
                 page.classList.remove('active');
             });
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Update URL without reload
             history.pushState(null, '', '/');
         }
 
         function showPage(pageName) {
-            // Hide main content
             document.getElementById('mainContent').classList.add('hide');
-            // Hide all page views
             document.querySelectorAll('.page-view').forEach(page => {
                 page.classList.remove('active');
             });
-            // Show selected page
             const pageMap = {
                 'about': 'aboutPage',
                 'services': 'servicesPage',
@@ -1079,22 +1098,17 @@
                 document.getElementById(pageId).classList.add('active');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Update URL without reload
             history.pushState(null, '', '#');
         }
 
-        // Handle browser back/forward buttons
         window.addEventListener('popstate', function() {
-            // Check if any page view is active
             let anyPageActive = false;
             document.querySelectorAll('.page-view').forEach(page => {
                 if (page.classList.contains('active')) {
                     anyPageActive = true;
                 }
             });
-            
             if (anyPageActive) {
-                // Go back to main content
                 document.getElementById('mainContent').classList.remove('hide');
                 document.querySelectorAll('.page-view').forEach(page => {
                     page.classList.remove('active');
