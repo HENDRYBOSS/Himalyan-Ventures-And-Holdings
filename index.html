@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Himalayan Ventures and Holdings Pvt. Ltd. | Strategic Investment Nepal</title>
-    <!-- Favicon - Using the logo with transparent background treatment -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23003087' rx='30'/%3E%3Ctext x='100' y='85' font-size='22' font-family='Arial, sans-serif' font-weight='bold' fill='%23D4AF37' text-anchor='middle'%3EHIMALAYAN%3C/text%3E%3Ctext x='100' y='115' font-size='16' font-family='Arial, sans-serif' font-weight='bold' fill='%23D4AF37' text-anchor='middle'%3EVENTURES%3C/text%3E%3Ctext x='100' y='140' font-size='12' font-family='Arial, sans-serif' fill='%23FFFFFF' text-anchor='middle'%3EAND HOLDINGS%3C/text%3E%3Ctext x='100' y='160' font-size='14' font-family='Arial, sans-serif' font-weight='bold' fill='%23D4AF37' text-anchor='middle'%3EPVT. LTD%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -12,18 +12,24 @@
             --primary: #003087;
             --accent: #c8102e;
             --gold: #D4AF37;
-            --light-bg: #f4f7fc;
+            --light-bg: #f0f4f9;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.7; color:#1e2a3e; scroll-behavior: smooth; background:#fff; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height:1.7; 
+            color: #1e2a3e; 
+            scroll-behavior: smooth; 
+            background: #e8edf5; /* Full solid background - no white */
+        }
 
-        /* Sticky Header */
+        /* Sticky Header - stays on top while scrolling */
         header {
             background: linear-gradient(135deg, var(--primary), #00205e);
             color: white;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.25);
         }
@@ -36,7 +42,7 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        /* Logo Styles with Image - White Background Removed using mix-blend-mode */
+        /* Logo Styles */
         .logo {
             display: flex;
             align-items: center;
@@ -46,16 +52,9 @@
             height: 55px;
             width: auto;
             object-fit: contain;
-            /* Remove white background - makes white/light areas transparent */
             mix-blend-mode: multiply;
             background: transparent;
             filter: brightness(1.05) contrast(1.05);
-        }
-        /* Fallback for browsers that don't support mix-blend-mode */
-        @supports not (mix-blend-mode: multiply) {
-            .logo img {
-                background: transparent;
-            }
         }
         .logo-text {
             display: flex;
@@ -94,11 +93,10 @@
         }
         .nav-links a:hover { color: var(--gold); transform: translateY(-2px); display: inline-block; }
 
-        /* Hero Slider using img tags */
+        /* Hero Slider */
         .slider {
             height: 100vh;
             position: relative;
-            margin-top: 85px;
             overflow: hidden;
         }
         .slide {
@@ -142,9 +140,19 @@
             z-index: 1;
         }
 
-        section { padding: 100px 0; }
+        /* All sections with solid background colors - NO WHITE */
+        section { padding: 80px 0; }
         .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
-        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 3rem; color: var(--primary); font-weight: 700; letter-spacing: -0.5px; position: relative; }
+        
+        h2 { 
+            font-size: 2.5rem; 
+            text-align: center; 
+            margin-bottom: 2.5rem; 
+            color: var(--primary); 
+            font-weight: 700; 
+            letter-spacing: -0.5px; 
+            position: relative; 
+        }
         h2:after {
             content: '';
             display: block;
@@ -155,31 +163,43 @@
             border-radius: 4px;
         }
 
+        /* Section Background Colors - Full Solid, No White */
+        .bg-light { background: #e8edf5; }
+        .bg-white-alt { background: #dce3ef; }
+        .bg-blue-light { background: #d4dfef; }
+        .bg-gray-light { background: #cbd5e6; }
+
         .services-grid, .core-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
+        
+        /* Cards with slight off-white but not pure white */
         .card {
-            background: white;
+            background: #f5f7fc;
             padding: 2.5rem 1.8rem;
             border-radius: 28px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             text-align: center;
             transition: all 0.35s ease;
-            border: 1px solid rgba(0,48,135,0.08);
+            border: 1px solid rgba(0,48,135,0.1);
         }
         .card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 25px 45px rgba(0,48,135,0.12);
+            box-shadow: 0 25px 45px rgba(0,48,135,0.15);
             border-color: var(--gold);
+            background: #ffffff;
         }
         .card i { font-size: 3.2rem; color: var(--primary); margin-bottom: 1.2rem; background: #eef3ff; padding: 0.8rem; border-radius: 60px; }
         .card h3 { font-size: 1.7rem; margin-bottom: 1rem; color: #002366; }
         .card p { color: #3e5a6f; line-height: 1.6; text-align: left; }
 
-        .features { background: linear-gradient(135deg, #0a2540, #003087); color: white; }
+        .features { 
+            background: linear-gradient(135deg, #0a2540, #003087); 
+            color: white; 
+        }
         .features h2 { color: white; }
         .features h2:after { background: var(--gold); }
 
@@ -190,7 +210,7 @@
             margin-top: 2rem;
         }
         .phil-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.12);
             backdrop-filter: blur(2px);
             padding: 2rem;
             border-radius: 24px;
@@ -200,19 +220,28 @@
         }
         .phil-card:hover { background: rgba(255,255,255,0.2); transform: scale(1.02);}
         .phil-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+        .phil-card h4 { font-size: 1.4rem; margin-bottom: 0.8rem; }
 
         .stats {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 3rem;
+            gap: 2rem;
             margin: 3rem 0 1rem;
         }
-        .stat-item { text-align: center; background: #fff; padding: 1rem 2rem; border-radius: 60px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-width: 160px;}
+        .stat-item { 
+            text-align: center; 
+            background: #f0f4fa; 
+            padding: 1rem 2rem; 
+            border-radius: 60px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+            min-width: 170px;
+            border: 1px solid rgba(0,48,135,0.1);
+        }
         .stat-number { font-size: 2.4rem; font-weight: 800; color: var(--accent); }
         .stat-label { font-weight: 600; color: var(--primary);}
 
-        /* Enhanced Footer Styles */
+        /* Footer */
         .main-footer {
             background: #0a1428;
             color: #dce5f0;
@@ -261,7 +290,7 @@
             color: var(--gold);
         }
         .info-officer {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.08);
             padding: 1.2rem;
             border-radius: 16px;
             margin-top: 0.5rem;
@@ -292,19 +321,33 @@
             font-size: 0.85rem;
         }
 
+        /* Quote box */
+        .quote-box {
+            text-align: center; 
+            margin-top: 3rem; 
+            font-weight: 500; 
+            background: #d4dfef; 
+            padding: 1.5rem; 
+            border-radius: 48px;
+            color: #002366;
+        }
+
         @media (max-width: 850px) {
             nav { flex-direction: column; gap: 1rem; }
             .nav-links { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
             .slide h1 { font-size: 2.2rem; }
             .slide p { font-size: 1.2rem; }
             h2 { font-size: 2rem; }
-            section { padding: 70px 0; }
+            section { padding: 60px 0; }
             .logo img { height: 45px; }
             .logo-main { font-size: 1rem; }
         }
         @media (max-width: 550px) {
             .nav-links { gap: 1rem; }
             .container { padding: 0 1.2rem; }
+            .stats { gap: 1rem; }
+            .stat-item { padding: 0.7rem 1.2rem; min-width: 130px; }
+            .stat-number { font-size: 1.8rem; }
         }
         .btn-outline-light {
             display: inline-block;
@@ -325,11 +368,11 @@
 </head>
 <body>
 
-    <!-- Sticky Header with Logo Image - White Background Removed -->
+    <!-- Sticky Header - stays on top when scrolling -->
     <header>
         <nav>
             <div class="logo">
-                <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures and Holdings Logo" style="mix-blend-mode: multiply;">
+                <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures Logo" style="mix-blend-mode: multiply;" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <div class="logo-main">HIMALAYAN</div>
                     <div class="logo-sub">VENTURES AND HOLDINGS</div>
@@ -347,7 +390,7 @@
         </nav>
     </header>
 
-  <!-- HERO SLIDER - WORKING WITH ONLINE IMAGES -->
+    <!-- HERO SLIDER -->
     <div class="slider" id="home">
         <div class="slide active">
             <img src="https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Slide 1">
@@ -378,7 +421,7 @@
     </div>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="about" class="bg-light">
         <div class="container">
             <h2>Company Overview</h2>
             <div style="max-width: 1100px; margin: 0 auto;">
@@ -399,7 +442,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" style="background: var(--light-bg);">
+    <section id="services" class="bg-white-alt">
         <div class="container">
             <h2>Our Core Services</h2>
             <div class="services-grid">
@@ -412,7 +455,7 @@
     </section>
 
     <!-- Core Business Areas -->
-    <section id="coreBusiness">
+    <section id="coreBusiness" class="bg-blue-light">
         <div class="container">
             <h2>Core Business Areas</h2>
             <div class="core-grid">
@@ -424,22 +467,22 @@
         </div>
     </section>
 
-    <!-- Vision, Mission, Philosophy -->
+    <!-- Vision, Mission, Philosophy Section -->
     <section id="philosophy" class="features">
         <div class="container">
             <h2>Vision, Mission & Philosophy</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 28px;">
+                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;">
                     <i class="fas fa-eye" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
                     <h3 style="color:var(--gold);">Vision</h3>
                     <p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal.</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 28px;">
+                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;">
                     <i class="fas fa-bullseye" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
                     <h3 style="color:var(--gold);">Mission</h3>
                     <p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 28px;">
+                <div style="background: rgba(255,255,255,0.12); padding: 2rem; border-radius: 28px;">
                     <i class="fas fa-gem" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;"></i>
                     <h3 style="color:var(--gold);">Investment Philosophy</h3>
                     <p>Disciplined, structured approach built on diversification, careful risk assessment, and long-term thinking. Prioritizing sustainable growth by balancing high-potential opportunities with stable asset classes.</p>
@@ -455,7 +498,7 @@
     </section>
 
     <!-- Why Choose Himalayan Ventures -->
-    <section id="why-choose">
+    <section id="why-choose" class="bg-gray-light">
         <div class="container">
             <h2>Why Choose Himalayan Ventures and Holdings?</h2>
             <div style="max-width: 1000px; margin: 0 auto; text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
@@ -468,11 +511,13 @@
                 <div class="card"><i class="fas fa-hand-holding-usd"></i><h3>Deep Local Expertise</h3><p>Rooted in Kathmandu with global standards, leveraging local economic insights for superior decisions.</p></div>
                 <div class="card"><i class="fas fa-leaf"></i><h3>Contribution to Nepal</h3><p>Supporting enterprise development, job creation, and capital formation for a resilient economy.</p></div>
             </div>
-            <p style="text-align: center; margin-top: 3rem; font-weight: 500; background: #eef3ff; padding: 1.2rem; border-radius: 48px;">"Rather than pursuing short-term gains, Himalayan Ventures prioritizes sustainable growth — balancing high-potential opportunities with stable asset classes, guided by thorough analysis and clear market dynamics."</p>
+            <div class="quote-box">
+                "Rather than pursuing short-term gains, Himalayan Ventures prioritizes sustainable growth — balancing high-potential opportunities with stable asset classes, guided by thorough analysis and clear market dynamics."
+            </div>
         </div>
     </section>
 
-    <!-- Enhanced Footer with Contact, Services, Quick Links, Information Officer -->
+    <!-- Footer -->
     <footer class="main-footer" id="footer-contact">
         <div class="container">
             <div class="footer-grid">
@@ -500,11 +545,8 @@
                     <ul>
                         <li><a href="https://www.nrb.org.np" target="_blank">Nepal Rastra Bank (NRB)</a></li>
                         <li><a href="https://www.cdsc.com.np" target="_blank">CDS and Clearing Limited</a></li>
-                        <li><a href="https://www.nepalinsurance.com" target="_blank">Nepal Insurance Authority</a></li>
                         <li><a href="https://www.sebon.gov.np" target="_blank">Securities Board of Nepal (SEBON)</a></li>
                         <li><a href="https://www.nepalstock.com" target="_blank">Nepal Stock Exchange (NEPSE)</a></li>
-                        <li><a href="#" target="_blank">Targeted Sanction List</a></li>
-                        <li><a href="#" target="_blank">United Nations Security Council Consolidated List</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -538,10 +580,10 @@
                 slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
                 slides[currentSlide].classList.add('active');
-            }, 6200);
+            }, 6000);
         }
 
-        // Smooth scrolling
+        // Smooth scrolling for navigation - header is sticky so it works perfectly
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -549,7 +591,10 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
             });
         });
@@ -585,12 +630,6 @@
         }, { threshold: 0.4 });
         const statsContainer = document.querySelector('.stats');
         if(statsContainer) observer.observe(statsContainer);
-
-        window.addEventListener('load', () => {
-            if(statsContainer && statsContainer.getBoundingClientRect().top < window.innerHeight - 100) {
-                animateStats();
-            }
-        });
     </script>
 </body>
 </html>
