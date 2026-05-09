@@ -28,13 +28,15 @@
             background: #e8edf5;
         }
 
+        /* Header - White background with black text */
         header {
-            background: linear-gradient(135deg, var(--primary), #00205e);
-            color: white;
+            background: #ffffff;
+            color: #0d429f;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             animation: slideDown 0.6s ease;
+            border-bottom: 1px solid #e0e6ed;
         }
         @keyframes slideDown {
             from { transform: translateY(-100%); opacity: 0; }
@@ -75,19 +77,19 @@
             font-size: 1.45rem;
             font-weight: 800;
             letter-spacing: 1.5px;
-            color: var(--gold);
+            color: #003087;
         }
         .logo-sub {
             font-size: 0.68rem;
             font-weight: 600;
             letter-spacing: 1.2px;
-            color: #ffffff;
+            color: #4a5568;
         }
         .logo-sub2 {
             font-size: 0.62rem;
             font-weight: 500;
             letter-spacing: 0.8px;
-            color: #cce0ff;
+            color: #718096;
         }
         
         .nav-links {
@@ -96,7 +98,7 @@
             list-style: none;
         }
         .nav-links a {
-            color: white;
+            color: #1e2a3e;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
@@ -104,7 +106,7 @@
             position: relative;
             cursor: pointer;
         }
-        .nav-links a:hover { color: var(--gold); transform: translateY(-2px); }
+        .nav-links a:hover { color: #003087; transform: translateY(-2px); }
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -112,7 +114,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gold);
+            background: #003087;
             transition: width 0.3s ease;
         }
         .nav-links a:hover::after {
@@ -188,7 +190,7 @@
         }
         .btn-outline-light:hover {
             background: white;
-            color: var(--primary);
+            color: #003087;
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
@@ -219,7 +221,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--primary);
+            background: #003087;
             color: white;
             padding: 12px 24px;
             border-radius: 40px;
@@ -243,7 +245,7 @@
         
         .page-title {
             font-size: 3rem;
-            color: var(--primary);
+            color: #003087;
             margin-bottom: 2rem;
             text-align: center;
         }
@@ -252,7 +254,7 @@
             display: block;
             width: 80px;
             height: 4px;
-            background: var(--accent);
+            background: #c8102e;
             margin: 0.8rem auto 0;
             border-radius: 4px;
         }
@@ -267,7 +269,7 @@
         
         .page-card h3 {
             font-size: 1.8rem;
-            color: var(--primary);
+            color: #003087;
             margin-bottom: 1rem;
         }
         
@@ -295,7 +297,7 @@
         .contact-form label {
             display: block;
             font-weight: 600;
-            color: var(--primary);
+            color: #003087;
             margin-bottom: 0.5rem;
         }
         .contact-form input, 
@@ -311,7 +313,7 @@
         .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: #D4AF37;
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
         }
         .contact-form textarea {
@@ -319,7 +321,7 @@
             min-height: 120px;
         }
         .btn-submit {
-            background: linear-gradient(135deg, var(--primary), #00205e);
+            background: linear-gradient(135deg, #003087, #00205e);
             color: white;
             border: none;
             padding: 14px 32px;
@@ -333,8 +335,8 @@
         .btn-submit:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(0,48,135,0.3);
-            background: var(--gold);
-            color: var(--primary);
+            background: #D4AF37;
+            color: #003087;
         }
         .btn-submit:disabled {
             opacity: 0.6;
@@ -363,7 +365,7 @@
             display: block;
         }
         .required-star {
-            color: var(--accent);
+            color: #c8102e;
             margin-left: 3px;
         }
 
@@ -374,7 +376,7 @@
             font-size: 2.5rem; 
             text-align: center; 
             margin-bottom: 2.5rem; 
-            color: var(--primary); 
+            color: #003087; 
             font-weight: 700; 
             position: relative; 
         }
@@ -383,7 +385,7 @@
             display: block;
             width: 80px;
             height: 4px;
-            background: var(--accent);
+            background: #c8102e;
             margin: 0.8rem auto 0;
             border-radius: 4px;
         }
@@ -412,12 +414,12 @@
         .card:hover {
             transform: translateY(-12px);
             box-shadow: 0 25px 45px rgba(0,48,135,0.15);
-            border-color: var(--gold);
+            border-color: #D4AF37;
             background: #ffffff;
         }
         .card i { 
             font-size: 3.2rem; 
-            color: var(--primary); 
+            color: #003087; 
             margin-bottom: 1.2rem; 
             background: #eef3ff; 
             padding: 0.8rem; 
@@ -426,7 +428,7 @@
         }
         .card:hover i {
             transform: scale(1.1);
-            background: var(--gold);
+            background: #D4AF37;
             color: white;
         }
         .card h3 { 
@@ -441,7 +443,7 @@
             color: white; 
         }
         .features h2 { color: white; }
-        .features h2:after { background: var(--gold); }
+        .features h2:after { background: #D4AF37; }
 
         .philosophy-grid {
             display: grid;
@@ -463,7 +465,7 @@
         }
         .phil-card i { 
             font-size: 2.5rem; 
-            color: var(--gold); 
+            color: #D4AF37; 
             margin-bottom: 1rem;
         }
 
@@ -485,9 +487,9 @@
         .stat-number { 
             font-size: 2.4rem; 
             font-weight: 800; 
-            color: var(--accent);
+            color: #c8102e;
         }
-        .stat-label { font-weight: 600; color: var(--primary);}
+        .stat-label { font-weight: 600; color: #003087;}
 
         .vision-mission-grid {
             display: grid;
@@ -511,7 +513,7 @@
             background: #0a1428;
             color: #dce5f0;
             padding: 4rem 0 2rem;
-            border-top: 3px solid var(--gold);
+            border-top: 3px solid #D4AF37;
         }
         .footer-grid {
             display: grid;
@@ -520,10 +522,10 @@
             margin-bottom: 3rem;
         }
         .footer-col h4 {
-            color: var(--gold);
+            color: #D4AF37;
             font-size: 1.2rem;
             margin-bottom: 1.2rem;
-            border-left: 3px solid var(--gold);
+            border-left: 3px solid #D4AF37;
             padding-left: 12px;
         }
         .footer-col ul {
@@ -539,7 +541,7 @@
             cursor: pointer;
         }
         .footer-col ul li a:hover {
-            color: var(--gold);
+            color: #D4AF37;
             transform: translateX(5px);
         }
         .footer-col p {
@@ -551,7 +553,7 @@
         }
         .footer-col p i {
             width: 24px;
-            color: var(--gold);
+            color: #D4AF37;
         }
         .info-officer {
             background: rgba(255,255,255,0.08);
@@ -564,7 +566,7 @@
             background: rgba(255,255,255,0.15);
         }
         .info-officer h5 {
-            color: var(--gold);
+            color: #D4AF37;
             margin-bottom: 0.5rem;
         }
         .social-icons {
@@ -578,7 +580,7 @@
             transition: all 0.3s ease;
         }
         .social-icons a:hover {
-            color: var(--gold);
+            color: #D4AF37;
             transform: translateY(-3px);
         }
         .footer-bottom {
@@ -607,7 +609,7 @@
             margin: 2rem auto 0;
         }
         .btn-contact-cta {
-            background: var(--accent);
+            background: #c8102e;
             color: white;
             border: none;
             padding: 14px 40px;
@@ -620,8 +622,8 @@
         }
         .btn-contact-cta:hover {
             transform: translateY(-3px);
-            background: var(--gold);
-            color: var(--primary);
+            background: #D4AF37;
+            color: #003087;
             box-shadow: 0 8px 25px rgba(212,175,55,0.4);
         }
 
@@ -631,7 +633,7 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary), #00205e);
+            background: linear-gradient(135deg, #003087, #00205e);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -643,7 +645,7 @@
             transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
-            border: 2px solid var(--gold);
+            border: 2px solid #D4AF37;
         }
         .go-to-top.show {
             opacity: 1;
@@ -709,7 +711,7 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="Gemini_Generated_Image_rc4iydrc4iydrc4i-removebg-preview.png" alt="Himalayan Ventures">
+                <img src="WhatsApp_Image_2026-05-08_at_9.17.01_PM-removebg-preview.png" alt="Himalayan Ventures">
                 <div class="logo-text">
                     <div class="logo-main">HIMALAYAN</div>
                     <div class="logo-sub">VENTURES AND HOLDINGS</div>
@@ -780,12 +782,12 @@
                 <h2 data-aos="fade-up">Vision & Mission</h2>
                 <div class="vision-mission-grid" data-aos="fade-up">
                     <div class="vision-card">
-                        <i class="fas fa-eye" style="font-size: 2.5rem; color: var(--gold);"></i>
+                        <i class="fas fa-eye" style="font-size: 2.5rem; color: #D4AF37;"></i>
                         <h3>Our Vision</h3>
                         <p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal.</p>
                     </div>
                     <div class="mission-card">
-                        <i class="fas fa-bullseye" style="font-size: 2.5rem; color: var(--gold);"></i>
+                        <i class="fas fa-bullseye" style="font-size: 2.5rem; color: #D4AF37;"></i>
                         <h3>Our Mission</h3>
                         <p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p>
                     </div>
@@ -834,7 +836,7 @@
                     <div class="card" data-aos="flip-right"><i class="fas fa-leaf"></i><h3>Contribution to Nepal</h3><p>Supporting enterprise development, job creation, and capital formation for a resilient economy.</p></div>
                 </div>
                 <div class="quote-box" data-aos="zoom-in-up">
-                    <i class="fas fa-quote-left" style="margin-right: 10px; color: var(--accent);"></i> Rather than pursuing short-term gains, Himalayan Ventures prioritizes sustainable growth — balancing high-potential opportunities with stable asset classes, guided by thorough analysis and clear market dynamics.
+                    <i class="fas fa-quote-left" style="margin-right: 10px; color: #c8102e;"></i> Rather than pursuing short-term gains, Himalayan Ventures prioritizes sustainable growth — balancing high-potential opportunities with stable asset classes, guided by thorough analysis and clear market dynamics.
                 </div>
                 <!-- Get in Touch Button (Homepage) -->
                 <div class="contact-cta" data-aos="fade-up">
@@ -899,7 +901,7 @@
     <!-- Page Views: About, Services, Core Business, Philosophy -->
     <div id="aboutPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back to Home</button><h1 class="page-title">About Us</h1><div class="page-card"><h3>Company Overview</h3><p>Himalayan Ventures and Holdings is a Nepal-based investment company dedicated to long-term value creation across share market, commodity market, real estate, and SMEs. With a strategic emphasis on diversification and risk-managed growth, we create sustainable financial returns while contributing to Nepal's economic progress.</p></div><div class="stats"><div class="stat-item"><div class="stat-number">12</div><div class="stat-label">+ Years</div></div><div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Sectors</div></div><div class="stat-item"><div class="stat-number">25</div><div class="stat-label">Portfolio</div></div></div></div></div>
     
-    <div id="servicesPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">Our Services</h1><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;"><div class="page-card"><i class="fas fa-chart-line" style="font-size:2rem; color:var(--gold);"></i><h4>Share Market</h4><p>Equity investments and active trading in fundamentally sound companies with strong growth potential.</p></div><div class="page-card"><i class="fas fa-coins" style="font-size:2rem; color:var(--gold);"></i><h4>Commodity Market</h4><p>Strategic positioning in metals and natural commodities using global demand-supply dynamics.</p></div><div class="page-card"><i class="fas fa-building" style="font-size:2rem; color:var(--gold);"></i><h4>Real Estate</h4><p>Long-term value creation through high-appreciation assets and selective property trading.</p></div><div class="page-card"><i class="fas fa-handshake" style="font-size:2rem; color:var(--gold);"></i><h4>SME Investment</h4><p>Equity participation and debentures for scalable Nepalese enterprises.</p></div></div></div></div>
+    <div id="servicesPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">Our Services</h1><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;"><div class="page-card"><i class="fas fa-chart-line" style="font-size:2rem; color:#D4AF37;"></i><h4>Share Market</h4><p>Equity investments and active trading in fundamentally sound companies with strong growth potential.</p></div><div class="page-card"><i class="fas fa-coins" style="font-size:2rem; color:#D4AF37;"></i><h4>Commodity Market</h4><p>Strategic positioning in metals and natural commodities using global demand-supply dynamics.</p></div><div class="page-card"><i class="fas fa-building" style="font-size:2rem; color:#D4AF37;"></i><h4>Real Estate</h4><p>Long-term value creation through high-appreciation assets and selective property trading.</p></div><div class="page-card"><i class="fas fa-handshake" style="font-size:2rem; color:#D4AF37;"></i><h4>SME Investment</h4><p>Equity participation and debentures for scalable Nepalese enterprises.</p></div></div></div></div>
     
     <div id="coreBusinessPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">What We Do</h1><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;"><div class="page-card"><i class="fas fa-chart-simple"></i><h4>Share Market</h4><p>Balanced mix of long-term equity investments and active trading strategies across Nepal's capital markets.</p></div><div class="page-card"><i class="fas fa-weight-hanging"></i><h4>Commodity Market</h4><p>Strategic positioning based on price trends and global demand-supply dynamics with risk controls.</p></div><div class="page-card"><i class="fas fa-city"></i><h4>Real Estate</h4><p>Long-term value creation focusing on assets with strong appreciation potential.</p></div><div class="page-card"><i class="fas fa-chart-line"></i><h4>SME Investment</h4><p>Capital through structured investment models including equity and debentures.</p></div></div></div></div>
     
@@ -912,13 +914,13 @@
             <h1 class="page-title">Contact Us</h1>
             <div class="contact-page-grid">
                 <div class="page-card">
-                    <h3><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Office Address</h3>
+                    <h3><i class="fas fa-map-marker-alt" style="color: #D4AF37;"></i> Office Address</h3>
                     <p>Bhakta Marga-04, Baluwatar<br>Kathmandu, Nepal</p>
-                    <h3><i class="fas fa-phone-alt" style="color: var(--gold);"></i> Phone</h3>
+                    <h3><i class="fas fa-phone-alt" style="color: #D4AF37;"></i> Phone</h3>
                     <p>+977 9743964252</p>
-                    <h3><i class="fas fa-envelope" style="color: var(--gold);"></i> Email</h3>
+                    <h3><i class="fas fa-envelope" style="color: #D4AF37;"></i> Email</h3>
                     <p>himalayanventuresandholdings@gmail.com</p>
-                    <h3><i class="fas fa-clock" style="color: var(--gold);"></i> Business Hours</h3>
+                    <h3><i class="fas fa-clock" style="color: #D4AF37;"></i> Business Hours</h3>
                     <p>Sunday - Friday: 10:00 AM - 6:00 PM</p>
                 </div>
                 <div class="contact-form">
@@ -973,7 +975,7 @@
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
 
-        // Firebase Configuration (provided by user)
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAipk6iSzjkQoQOVEVFUydxPAqXjOaRfhY",
             authDomain: "everest-public-school.firebaseapp.com",
@@ -1057,7 +1059,7 @@
         window.addEventListener('scroll', () => { goToTopBtn.classList.toggle('show', window.scrollY > 300); });
         goToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // Firebase Form Submission - Store inquiries in Realtime Database
+        // Firebase Form Submission
         const form = document.getElementById('inquiryForm');
         const statusDiv = document.getElementById('formStatus');
         const submitBtn = document.getElementById('submitBtn');
