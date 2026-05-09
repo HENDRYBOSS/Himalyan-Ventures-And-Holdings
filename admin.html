@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himalayan Ventures Admin | Live Notifications</title>
+    <link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-05-09 at 9.17.01 PM.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f4f9;
+            padding: 16px;
+        }
+        .admin-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0a2a3b, #1a4a6f);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 3px solid #e6b422;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .mountain-icon {
+            width: 50px;
+            height: 50px;
+            background: #e6b422;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a2a3b;
+            font-size: 1.5rem;
+        }
+        .brand h1 { color: white; font-size: 1.3rem; }
+        .brand p { color: #e6b422; font-size: 0.65rem; }
+        .notification-status {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 24px;
+            background: #f8fafc;
+        }
+        .stat-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #1a4a6f; }
+        .toolbar {
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        .notify-btn {
+            background: #e6b422;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .test-btn {
+            background: #1a4a6f;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        .inquiry-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e9edf2;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            transition: all 0.3s;
+        }
+        .inquiry-card.new {
+            background: #fff9e6;
+            border-left: 4px solid #e6b422;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .inquiry-info {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .info-item {
+            background: #f0f2f5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        .badge-unread { background: #c8102e; color: white; }
+        .badge-read { background: #2b7a4b; color: white; }
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-sm {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .btn-wa { background: #25D366; color: white; }
+        .btn-call { background: #0077b6; color: white; }
+        .btn-read { background: #6c757d; color: white; }
+        .btn-del { background: #dc3545; color: white; }
+        .empty-state { text-align: center; padding: 60px; color: #7c8ba0; }
+        .inquiries-list { padding: 24px; }
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin: 16px 24px;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .inquiry-info { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="header">
+        <div class="logo-area">
+            <div class="mountain-icon"><i class="fas fa-mountain"></i></div>
+            <div class="brand">
+                <h1>HIMALAYAN VENTURES</h1>
+                <p>ADMIN DASHBOARD • REAL-TIME</p>
+            </div>
+        </div>
+        <div class="notification-status" id="notifyStatus">
+            <i class="fas fa-bell-slash"></i>
+            <span id="statusText">Notifications: Off</span>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-box"><div class="stat-number" id="totalCount">0</div><div>Total Inquiries</div></div>
+        <div class="stat-box"><div class="stat-number" id="unreadCount">0</div><div>Unread</div></div>
+        <div class="stat-box"><div class="stat-number" id="readCount">0</div><div>Read</div></div>
+        <div class="stat-box"><div class="stat-number" id="alertCount">0</div><div>New Alerts</div></div>
+    </div>
+
+    <div class="toolbar">
+        <button id="enableNotifyBtn" class="notify-btn"><i class="fas fa-bell"></i> 🔔 Enable Notifications</button>
+        <button id="testNotifyBtn" class="test-btn"><i class="fas fa-vial"></i> Test Notification</button>
+        <button id="refreshBtn" class="test-btn"><i class="fas fa-sync-alt"></i> Refresh</button>
+    </div>
+
+    <!-- IMPORTANT WARNING -->
+    <div class="warning-box" id="warningBox">
+        <i class="fas fa-info-circle"></i> 
+        <strong>⚠️ Important:</strong> Notifications ONLY work when this admin panel is OPEN in a browser tab. 
+        Keep this tab open to receive alerts. Close tab = no notifications. This is a browser limitation.
+        <br><br>
+        ✅ For notifications even when closed → Need a REAL Android/iOS app with Firebase Cloud Messaging.
+    </div>
+
+    <div id="inquiriesList" class="inquiries-list">
+        <div class="empty-state"><i class="fas fa-mountain fa-3x"></i><br>Loading inquiries...</div>
+    </div>
+</div>
+
+<script>
+    // Firebase Config
+    const firebaseConfig = {
+        apiKey: "AIzaSyAipk6iSzjkQoQOVEVFUydxPAqXjOaRfhY",
+        authDomain: "everest-public-school.firebaseapp.com",
+        databaseURL: "https://everest-public-school-default-rtdb.firebaseio.com",
+        projectId: "everest-public-school",
+        storageBucket: "everest-public-school.firebasestorage.app",
+        messagingSenderId: "598969496568",
+        appId: "1:598969496568:web:b720c91e4a3c45347e9c0d"
+    };
+    
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    const database = firebase.database();
+    const inquiriesRef = database.ref('inquiries');
+    
+    let allInquiries = [];
+    let previousIds = new Set();
+    let notificationEnabled = false;
+    let notificationGranted = false;
+    let newAlertCount = 0;
+    
+    // Play sound function
+    function playBeep() {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            const ctx = new AudioContext();
+            const oscillator = ctx.createOscillator();
+            const gain = ctx.createGain();
+            oscillator.connect(gain);
+            gain.connect(ctx.destination);
+            oscillator.frequency.value = 880;
+            gain.gain.value = 0.2;
+            oscillator.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.5);
+            setTimeout(() => oscillator.stop(), 500);
+        } catch(e) { console.log('Audio error:', e); }
+    }
+    
+    // Show browser notification
+    function showNotification(title, body, inquiry) {
+        if (!notificationGranted) {
+            console.log('Notifications not granted');
+            return false;
+        }
+        
+        try {
+            const notification = new Notification(title, {
+                body: body,
+                icon: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpolygon points="50,10 10,90 90,90" fill="%23e6b422"/%3E%3Ctext x="50" y="70" text-anchor="middle" fill="white" font-size="14"%3EH%3C/text%3E%3C/svg%3E',
+                vibrate: [200, 100, 200],
+                requireInteraction: true
+            });
+            
+            notification.onclick = function() {
+                window.focus();
+                notification.close();
+            };
+            
+            playBeep();
+            if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            return true;
+        } catch(e) {
+            console.error('Notification error:', e);
+            return false;
+        }
+    }
+    
+    // Update page title with unread count
+    function updateTitle() {
+        const unread = allInquiries.filter(i => !i.read).length;
+        document.title = unread > 0 ? `(${unread}) Himalayan Admin` : 'Himalayan Admin';
+    }
+    
+    // Format date
+    function formatDate(ts) {
+        if (!ts) return 'N/A';
+        try {
+            return new Date(ts).toLocaleString();
+        } catch(e) {
+            return ts;
+        }
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    // Render inquiries
+    function renderInquiries(newId = null) {
+        const container = document.getElementById('inquiriesList');
+        if (!allInquiries.length) {
+            container.innerHTML = '<div class="empty-state"><i class="fas fa-mountain fa-3x"></i><br>No inquiries yet. Submit from contact form to test.</div>';
+            updateStats();
+            return;
+        }
+        
+        const sorted = [...allInquiries].sort((a,b) => new Date(b.timestamp||0) - new Date(a.timestamp||0));
+        let html = '';
+        for (let inv of sorted) {
+            const isNew = (newId && inv.id === newId);
+            const fullName = `${inv.firstName || ''} ${inv.lastName || ''}`.trim() || 'Anonymous';
+            html += `
+                <div class="inquiry-card ${isNew ? 'new' : ''}" data-id="${inv.id}">
+                    <div class="inquiry-info">
+                        <span class="info-item">📅 ${formatDate(inv.timestamp)}</span>
+                        <span class="info-item">👤 ${escapeHtml(fullName)}</span>
+                        <span class="info-item">📱 ${escapeHtml(inv.mobile || '')}</span>
+                        <span class="info-item">📧 ${escapeHtml(inv.email || '')}</span>
+                        <span class="info-item">📌 ${escapeHtml(inv.subject || 'No Subject')}</span>
+                        <span class="info-item">💬 ${escapeHtml((inv.message || '').substring(0, 50))}${(inv.message || '').length > 50 ? '...' : ''}</span>
+                        <span class="${inv.read ? 'badge badge-read' : 'badge badge-unread'}">${inv.read ? '✓ READ' : '⏳ UNREAD'}</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn-sm btn-wa" onclick="whatsappAction('${escapeHtml(inv.mobile || '').replace(/'/g, "\\'")}')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button class="btn-sm btn-call" onclick="callAction('${escapeHtml(inv.mobile || '').replace(/'/g, "\\'")}')"><i class="fas fa-phone"></i> Call</button>
+                        ${!inv.read ? `<button class="btn-sm btn-read" onclick="markAsRead('${inv.id}')"><i class="fas fa-check"></i> Mark Read</button>` : ''}
+                        <button class="btn-sm btn-del" onclick="deleteInquiry('${inv.id}')"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+        updateStats();
+        updateTitle();
+    }
+    
+    function updateStats() {
+        const total = allInquiries.length;
+        const unread = allInquiries.filter(i => !i.read).length;
+        document.getElementById('totalCount').innerText = total;
+        document.getElementById('unreadCount').innerText = unread;
+        document.getElementById('readCount').innerText = total - unread;
+    }
+    
+    // Global functions for buttons
+    window.whatsappAction = function(mobile) {
+        if (!mobile) { alert('No mobile number'); return; }
+        let clean = mobile.replace(/[^0-9+]/g, '');
+        if (!clean.startsWith('+')) clean = '+977' + clean;
+        window.open(`https://wa.me/${clean}`, '_blank');
+    };
+    
+    window.callAction = function(mobile) {
+        if (!mobile) { alert('No mobile number'); return; }
+        let clean = mobile.replace(/[^0-9+]/g, '');
+        if (!clean.startsWith('+')) clean = '+977' + clean;
+        window.location.href = `tel:${clean}`;
+    };
+    
+    window.markAsRead = async function(id) {
+        await inquiriesRef.child(id).update({ read: true });
+    };
+    
+    window.deleteInquiry = async function(id) {
+        if (confirm('Delete this inquiry permanently?')) {
+            await inquiriesRef.child(id).remove();
+        }
+    };
+    
+    // Request notification permission
+    async function requestNotificationPermission() {
+        if (!('Notification' in window)) {
+            alert('Your browser does not support notifications');
+            return false;
+        }
+        
+        const permission = await Notification.requestPermission();
+        notificationGranted = (permission === 'granted');
+        
+        const statusDiv = document.getElementById('notifyStatus');
+        const statusText = document.getElementById('statusText');
+        
+        if (notificationGranted) {
+            statusDiv.style.background = '#28a745';
+            statusText.innerHTML = '✅ Notifications ACTIVE (tab must be open)';
+            document.getElementById('enableNotifyBtn').innerHTML = '<i class="fas fa-check"></i> Notifications Enabled';
+            showNotification('✅ Notifications Enabled', 'You will now receive alerts for new inquiries', null);
+        } else {
+            statusDiv.style.background = '#dc3545';
+            statusText.innerHTML = '❌ Notifications Blocked';
+            alert('Please allow notifications in browser settings');
+        }
+        return notificationGranted;
+    }
+    
+    // Test notification
+    function testNotification() {
+        if (notificationGranted) {
+            showNotification('🔔 Test Notification', 'If you see this, notifications are working!', null);
+        } else {
+            alert('Please enable notifications first using the "Enable Notifications" button');
+        }
+    }
+    
+    // Firebase listener - detects new inquiries
+    function startListening() {
+        inquiriesRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            const newList = [];
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    newList.push({ id: key, ...data[key] });
+                });
+            }
+            
+            // Detect NEW inquiries
+            const newInquiries = newList.filter(item => !previousIds.has(item.id));
+            
+            if (newInquiries.length > 0 && notificationGranted) {
+                newInquiries.forEach(inv => {
+                    const name = `${inv.firstName || ''} ${inv.lastName || ''}`.trim() || 'Someone';
+                    const title = `📩 New Contact Form Submission`;
+                    const body = `From: ${name}\nSubject: ${inv.subject || 'Inquiry'}\nMobile: ${inv.mobile || 'Not provided'}`;
+                    
+                    showNotification(title, body, inv);
+                    
+                    // Increment alert counter
+                    newAlertCount++;
+                    document.getElementById('alertCount').innerText = newAlertCount;
+                    document.getElementById('alertCount').style.color = '#c8102e';
+                    
+                    // Flash tab
+                    let originalTitle = document.title;
+                    let flashInterval = setInterval(() => {
+                        document.title = document.title === '🔔 NEW INQUIRY!' ? originalTitle : '🔔 NEW INQUIRY!';
+                    }, 1000);
+                    setTimeout(() => clearInterval(flashInterval), 5000);
+                });
+            }
+            
+            allInquiries = newList;
+            previousIds = new Set(newList.map(i => i.id));
+            
+            // Highlight newest if any
+            const newestId = newInquiries.length > 0 ? newInquiries[0].id : null;
+            renderInquiries(newestId);
+        });
+    }
+    
+    // Event listeners
+    document.getElementById('enableNotifyBtn').addEventListener('click', requestNotificationPermission);
+    document.getElementById('testNotifyBtn').addEventListener('click', testNotification);
+    document.getElementById('refreshBtn').addEventListener('click', () => renderInquiries());
+    
+    // Check initial permission
+    if ('Notification' in window) {
+        notificationGranted = (Notification.permission === 'granted');
+        if (notificationGranted) {
+            document.getElementById('notifyStatus').style.background = '#28a745';
+            document.getElementById('statusText').innerHTML = '✅ Notifications ACTIVE (tab must be open)';
+            document.getElementById('enableNotifyBtn').innerHTML = '<i class="fas fa-check"></i> Notifications Enabled';
+        }
+    }
+    
+    // Start listening
+    startListening();
+    
+    // Log to console for debugging
+    console.log('Admin panel loaded. Keep this tab open to receive notifications!');
+    console.log('Notification permission:', notificationGranted);
+</script>
+</body>
+</html>
