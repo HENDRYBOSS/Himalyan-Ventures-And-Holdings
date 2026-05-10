@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Himalayan Ventures and Holdings | Strategic Investment Nepal</title>
+    <!-- Canonical URL for himalayanventuresandholdings.com -->
+    <link rel="canonical" href="https://himalayanventuresandholdings.com">
+    <meta property="og:title" content="Himalayan Ventures and Holdings">
+    <meta property="og:site_name" content="Himalayan Ventures and Holdings">
+    <meta property="og:url" content="https://himalayanventuresandholdings.com">
+    <meta name="twitter:title" content="Himalayan Ventures and Holdings">
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -711,7 +717,7 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures">
+                <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures and Holdings Logo">
                 <div class="logo-text">
                     <div class="logo-main">HIMALAYAN</div>
                     <div class="logo-sub">VENTURES AND HOLDINGS</div>
@@ -823,12 +829,11 @@
             </div>
         </section>
 
-        <!-- Why Choose Us Section with QUOTE and GET IN TOUCH BUTTON -->
+        <!-- Why Choose Us Section -->
         <section class="bg-gray-light">
             <div class="container">
                 <h2 data-aos="fade-up">Why Choose Himalayan Ventures?</h2>
-               <p>Himalayan Ventures and Holdings stands apart through its clarity of purpose and disciplined execution. The company offers a focused yet diversified investment strategy, ensuring balanced exposure across key sectors of the economy. Its commitment to responsible capital management, transparency, and long-term value creation makes it a dependable partner for sustainable growth.</p>
-                    <p style="margin-top: 1rem;">Operating from Kathmandu with a deep understanding of the local economic environment, the company aligns its activities with the broader goal of contributing to Nepal's development while maintaining global investment standards.</p>
+                <p style="text-align: center; max-width: 1000px; margin: 0 auto 2rem auto;">Himalayan Ventures and Holdings stands apart through its clarity of purpose and disciplined execution. The company offers a focused yet diversified investment strategy, ensuring balanced exposure across key sectors of the economy. Its commitment to responsible capital management, transparency, and long-term value creation makes it a dependable partner for sustainable growth.</p>
                 <div class="services-grid">
                     <div class="card" data-aos="flip-right"><i class="fas fa-mountain"></i><h3>Clarity of Purpose</h3><p>Focused yet diversified investment strategy across critical economic sectors of Nepal.</p></div>
                     <div class="card" data-aos="flip-right"><i class="fas fa-chart-line"></i><h3>Risk-Managed Growth</h3><p>Careful market analysis, prudent risk assessment, and disciplined execution for balanced returns.</p></div>
@@ -898,7 +903,7 @@
         </footer>
     </div>
 
-    <!-- Page Views: About, Services, Core Business, Philosophy -->
+    <!-- Page Views -->
     <div id="aboutPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back to Home</button><h1 class="page-title">About Us</h1><div class="page-card"><h3>Company Overview</h3><p>Himalayan Ventures and Holdings is a Nepal-based investment company dedicated to long-term value creation across share market, commodity market, real estate, and SMEs. With a strategic emphasis on diversification and risk-managed growth, we create sustainable financial returns while contributing to Nepal's economic progress.</p></div><div class="stats"><div class="stat-item"><div class="stat-number">12</div><div class="stat-label">+ Years</div></div><div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Sectors</div></div><div class="stat-item"><div class="stat-number">25</div><div class="stat-label">Portfolio</div></div></div></div></div>
     
     <div id="servicesPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">Our Services</h1><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;"><div class="page-card"><i class="fas fa-chart-line" style="font-size:2rem; color:#D4AF37;"></i><h4>Share Market</h4><p>Equity investments and active trading in fundamentally sound companies with strong growth potential.</p></div><div class="page-card"><i class="fas fa-coins" style="font-size:2rem; color:#D4AF37;"></i><h4>Commodity Market</h4><p>Strategic positioning in metals and natural commodities using global demand-supply dynamics.</p></div><div class="page-card"><i class="fas fa-building" style="font-size:2rem; color:#D4AF37;"></i><h4>Real Estate</h4><p>Long-term value creation through high-appreciation assets and selective property trading.</p></div><div class="page-card"><i class="fas fa-handshake" style="font-size:2rem; color:#D4AF37;"></i><h4>SME Investment</h4><p>Equity participation and debentures for scalable Nepalese enterprises.</p></div></div></div></div>
@@ -975,6 +980,9 @@
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
 
+        // Update document title and metadata for himalayanventuresandholdings.com
+        document.title = "Himalayan Ventures and Holdings | Strategic Investment Nepal";
+        
         // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAipk6iSzjkQoQOVEVFUydxPAqXjOaRfhY",
@@ -1094,7 +1102,8 @@
             const inquiryData = {
                 firstName, lastName, mobile, email, subject, message,
                 timestamp: new Date().toISOString(),
-                read: false
+                read: false,
+                source: 'himalayanventuresandholdings.com'
             };
             
             try {
