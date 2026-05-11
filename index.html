@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Himalayan Ventures and Holdings | Strategic Investment Nepal</title>
-    <!-- Canonical URL for himalayanventuresandholdings.com -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://himalayanventuresandholdings.com">
     <meta property="og:title" content="Himalayan Ventures and Holdings">
     <meta property="og:site_name" content="Himalayan Ventures and Holdings">
@@ -35,7 +35,7 @@
             background: #e8edf5;
         }
 
-        /* Header - White background with black text */
+        /* Header - Fixed Height, No Expansion */
         header {
             background: #ffffff;
             color: #0d429f;
@@ -44,6 +44,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             animation: slideDown 0.6s ease;
             border-bottom: 1px solid #e0e6ed;
+            position: relative;
         }
         @keyframes slideDown {
             from { transform: translateY(-100%); opacity: 0; }
@@ -64,6 +65,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            cursor: pointer;
         }
         .logo img {
             height: 68px;
@@ -99,10 +101,15 @@
             color: #718096;
         }
         
+        /* Navigation - Fixed Height Dropdowns - No Expansion */
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
+        }
+        .nav-links li {
+            position: relative;
         }
         .nav-links a {
             color: #1e2a3e;
@@ -112,20 +119,84 @@
             font-size: 1rem;
             position: relative;
             cursor: pointer;
+            display: inline-block;
         }
-        .nav-links a:hover { color: #003087; transform: translateY(-2px); }
-        .nav-links a::after {
-            content: '';
+        .nav-links a:hover { color: #003087; }
+        
+        /* Dropdown - Absolutely Positioned (Does NOT expand header) */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-btn {
+            background: transparent;
+            border: none;
+            color: #1e2a3e;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 8px 0;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+        .dropdown-btn i {
+            font-size: 0.75rem;
+            transition: transform 0.3s;
+        }
+        .dropdown-btn:hover {
+            color: #003087;
+        }
+        .dropdown:hover .dropdown-btn i {
+            transform: rotate(180deg);
+        }
+        .dropdown-content {
             position: absolute;
-            bottom: -5px;
+            top: calc(100% + 8px);
             left: 0;
-            width: 0;
-            height: 2px;
-            background: #003087;
-            transition: width 0.3s ease;
+            background: white;
+            min-width: 250px;
+            border-radius: 20px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+            z-index: 10000;
+            border: 1px solid rgba(0,48,135,0.1);
+            overflow: hidden;
         }
-        .nav-links a:hover::after {
-            width: 100%;
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-content a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #1e2a3e;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            border-bottom: 1px solid #f0f2f5;
+            cursor: pointer;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a i {
+            width: 24px;
+            color: #D4AF37;
+            font-size: 1rem;
+        }
+        .dropdown-content a:hover {
+            background: linear-gradient(90deg, #f0f4ff, #ffffff);
+            color: #003087;
+            padding-left: 26px;
         }
 
         /* Hero Slider */
@@ -706,6 +777,7 @@
         @media (max-width: 850px) {
             nav { flex-direction: column; gap: 1rem; text-align: center; }
             .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+            .dropdown-content { left: 0; min-width: 220px; }
             .slide h1 { font-size: 2.2rem; }
             .slide p { font-size: 1.2rem; }
             .form-row { grid-template-columns: 1fr; }
@@ -717,7 +789,7 @@
 
     <header>
         <nav>
-            <div class="logo">
+            <div class="logo" onclick="refreshToHome()">
                 <img src="WhatsApp Image 2026-05-08 at 9.17.01 PM.jpeg" alt="Himalayan Ventures and Holdings Logo">
                 <div class="logo-text">
                     <div class="logo-main">HIMALAYAN</div>
@@ -727,11 +799,24 @@
             </div>
             <ul class="nav-links">
                 <li><a onclick="showMainContent()">Home</a></li>
-                <li><a onclick="showPage('about')">About</a></li>
-                <li><a onclick="showPage('services')">Services</a></li>
-                <li><a onclick="showPage('coreBusiness')">What We Do</a></li>
-                <li><a onclick="showPage('philosophy')">Philosophy</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-btn">About Us <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="showAboutSection('company')"><i class="fas fa-building"></i> Our Company</a>
+                        <a onclick="showAboutSection('mission')"><i class="fas fa-bullseye"></i> Mission & Vision</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <button class="dropdown-btn">What We Do <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="showServiceSection('sharemarket')"><i class="fas fa-chart-line"></i> Share Market</a>
+                        <a onclick="showServiceSection('commodity')"><i class="fas fa-coins"></i> Commodity Market</a>
+                        <a onclick="showServiceSection('realestate')"><i class="fas fa-building"></i> Real Estate</a>
+                        <a onclick="showServiceSection('sme')"><i class="fas fa-handshake"></i> SME Investment</a>
+                    </div>
+                </li>
                 <li><a onclick="showPage('contact')">Contact</a></li>
+                <li><a onclick="showPage('pitch')">Pitch To Us</a></li>
             </ul>
         </nav>
     </header>
@@ -745,7 +830,7 @@
                 <div class="slide-content">
                     <h1>Himalayan Ventures & Holdings</h1>
                     <p>Strategic Investment | Trading | Long-Term Value Creation</p>
-                    <a onclick="showPage('about')" class="btn-outline-light">Discover Our Vision <i class="fas fa-arrow-down"></i></a>
+                    <a onclick="showAboutSection('company')" class="btn-outline-light">Discover Our Vision <i class="fas fa-arrow-down"></i></a>
                 </div>
             </div>
             <div class="slide">
@@ -754,7 +839,7 @@
                 <div class="slide-content">
                     <h1>Disciplined Capital Allocation</h1>
                     <p>Share Market • Commodities • Real Estate • SMEs</p>
-                    <a onclick="showPage('coreBusiness')" class="btn-outline-light">Explore Sectors <i class="fas fa-chart-line"></i></a>
+                    <a onclick="showServiceSection('sharemarket')" class="btn-outline-light">Explore Sectors <i class="fas fa-chart-line"></i></a>
                 </div>
             </div>
             <div class="slide">
@@ -788,16 +873,8 @@
             <div class="container">
                 <h2 data-aos="fade-up">Vision & Mission</h2>
                 <div class="vision-mission-grid" data-aos="fade-up">
-                    <div class="vision-card">
-                        <i class="fas fa-eye" style="font-size: 2.5rem; color: #D4AF37;"></i>
-                        <h3>Our Vision</h3>
-                        <p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal.</p>
-                    </div>
-                    <div class="mission-card">
-                        <i class="fas fa-bullseye" style="font-size: 2.5rem; color: #D4AF37;"></i>
-                        <h3>Our Mission</h3>
-                        <p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p>
-                    </div>
+                    <div class="vision-card"><i class="fas fa-eye" style="font-size: 2.5rem; color: #D4AF37;"></i><h3>Our Vision</h3><p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal.</p></div>
+                    <div class="mission-card"><i class="fas fa-bullseye" style="font-size: 2.5rem; color: #D4AF37;"></i><h3>Our Mission</h3><p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p></div>
                 </div>
             </div>
         </section>
@@ -807,10 +884,10 @@
             <div class="container">
                 <h2 data-aos="fade-up">What We Do</h2>
                 <div class="core-grid">
-                    <div class="card" data-aos="flip-left"><i class="fas fa-chart-simple"></i><h3>📊 Share Market</h3><p><strong>Equity Investments and Trading:</strong> Balanced mix of long-term equity investments and active trading strategies. Focus on fundamentally sound companies with strong growth potential.</p></div>
-                    <div class="card" data-aos="flip-left"><i class="fas fa-weight-hanging"></i><h3>🏅 Commodity Market</h3><p><strong>Metals and Natural Commodities:</strong> Strategic positioning based on price trends, global demand-supply dynamics, and macroeconomic factors with disciplined risk controls.</p></div>
-                    <div class="card" data-aos="flip-left"><i class="fas fa-city"></i><h3>🏢 Real Estate</h3><p><strong>Investment and Trading:</strong> Long-term value creation focusing on assets with strong appreciation potential. Evaluates opportunities based on location, development potential, and market demand.</p></div>
-                    <div class="card" data-aos="flip-left"><i class="fas fa-chart-line"></i><h3>🏭 Small & Medium Enterprises</h3><p><strong>SME Investment:</strong> Provides capital through structured investment models including equity participation and debentures. Identifies businesses with scalable potential and capable management.</p></div>
+                    <div class="card" data-aos="flip-left"><i class="fas fa-chart-simple"></i><h3>📊 Share Market</h3><p><strong>Equity Investments and Trading:</strong> Balanced mix of long-term equity investments and active trading strategies.</p></div>
+                    <div class="card" data-aos="flip-left"><i class="fas fa-weight-hanging"></i><h3>🏅 Commodity Market</h3><p><strong>Metals and Natural Commodities:</strong> Strategic positioning with disciplined risk controls.</p></div>
+                    <div class="card" data-aos="flip-left"><i class="fas fa-city"></i><h3>🏢 Real Estate</h3><p><strong>Investment and Trading:</strong> Long-term value creation on high-appreciation assets.</p></div>
+                    <div class="card" data-aos="flip-left"><i class="fas fa-chart-line"></i><h3>🏭 Small & Medium Enterprises</h3><p><strong>SME Investment:</strong> Capital through structured investment models.</p></div>
                 </div>
             </div>
         </section>
@@ -819,13 +896,10 @@
         <section class="features">
             <div class="container">
                 <h2 data-aos="fade-up">Investment Philosophy</h2>
-                <div data-aos="fade-up" style="max-width: 1000px; margin: 0 auto; text-align: center; margin-bottom: 2rem;">
-                    <p style="font-size: 1.1rem;">Himalayan Ventures and Holdings follows a disciplined and structured investment approach built on diversification, careful risk assessment, and long-term thinking. Rather than pursuing short-term gains, the company prioritizes sustainable growth by balancing high-potential opportunities with stable asset classes.</p>
-                </div>
                 <div class="philosophy-grid">
-                    <div class="phil-card" data-aos="zoom-in"><i class="fas fa-chart-pie"></i><h4>Diversification First</h4><p>Balanced exposure across share market, commodities, real estate, and SMEs to mitigate volatility.</p></div>
-                    <div class="phil-card" data-aos="zoom-in"><i class="fas fa-clock"></i><h4>Long-Term Horizon</h4><p>Resisting short-term speculation; focused on compounding and structural growth.</p></div>
-                    <div class="phil-card" data-aos="zoom-in"><i class="fas fa-shield-alt"></i><h4>Transparency & Governance</h4><p>High standards of accountability, risk management and responsible capital allocation.</p></div>
+                    <div class="phil-card" data-aos="zoom-in"><i class="fas fa-chart-pie"></i><h4>Diversification First</h4><p>Balanced exposure across all sectors to mitigate volatility.</p></div>
+                    <div class="phil-card" data-aos="zoom-in"><i class="fas fa-clock"></i><h4>Long-Term Horizon</h4><p>Resisting short-term speculation; focused on compounding.</p></div>
+                    <div class="phil-card" data-aos="zoom-in"><i class="fas fa-shield-alt"></i><h4>Transparency & Governance</h4><p>High standards of accountability and risk management.</p></div>
                 </div>
             </div>
         </section>
@@ -834,157 +908,41 @@
         <section class="bg-gray-light">
             <div class="container">
                 <h2 data-aos="fade-up">Why Choose Himalayan Ventures?</h2>
-                <p style="text-align: center; max-width: 1000px; margin: 0 auto 2rem auto;">Himalayan Ventures and Holdings stands apart through its clarity of purpose and disciplined execution. The company offers a focused yet diversified investment strategy, ensuring balanced exposure across key sectors of the economy. Its commitment to responsible capital management, transparency, and long-term value creation makes it a dependable partner for sustainable growth.</p>
                 <div class="services-grid">
-                    <div class="card" data-aos="flip-right"><i class="fas fa-mountain"></i><h3>Clarity of Purpose</h3><p>Focused yet diversified investment strategy across critical economic sectors of Nepal.</p></div>
-                    <div class="card" data-aos="flip-right"><i class="fas fa-chart-line"></i><h3>Risk-Managed Growth</h3><p>Careful market analysis, prudent risk assessment, and disciplined execution for balanced returns.</p></div>
-                    <div class="card" data-aos="flip-right"><i class="fas fa-hand-holding-usd"></i><h3>Deep Local Expertise</h3><p>Rooted in Kathmandu with global standards, leveraging local economic insights.</p></div>
-                    <div class="card" data-aos="flip-right"><i class="fas fa-leaf"></i><h3>Contribution to Nepal</h3><p>Supporting enterprise development, job creation, and capital formation for a resilient economy.</p></div>
+                    <div class="card" data-aos="flip-right"><i class="fas fa-mountain"></i><h3>Clarity of Purpose</h3><p>Focused yet diversified investment strategy.</p></div>
+                    <div class="card" data-aos="flip-right"><i class="fas fa-chart-line"></i><h3>Risk-Managed Growth</h3><p>Careful market analysis and disciplined execution.</p></div>
+                    <div class="card" data-aos="flip-right"><i class="fas fa-hand-holding-usd"></i><h3>Deep Local Expertise</h3><p>Rooted in Kathmandu with global standards.</p></div>
+                    <div class="card" data-aos="flip-right"><i class="fas fa-leaf"></i><h3>Contribution to Nepal</h3><p>Supporting enterprise development and job creation.</p></div>
                 </div>
-                <div class="quote-box" data-aos="zoom-in-up">
-                    <i class="fas fa-quote-left" style="margin-right: 10px; color: #c8102e;"></i> Rather than pursuing short-term gains, Himalayan Ventures prioritizes sustainable growth — balancing high-potential opportunities with stable asset classes, guided by thorough analysis and clear market dynamics.
-                </div>
-                <!-- Get in Touch Button (Homepage) -->
-                <div class="contact-cta" data-aos="fade-up">
-                    <button class="btn-contact-cta" onclick="showPage('contact')"><i class="fas fa-envelope"></i> Get in Touch</button>
-                </div>
+                <div class="quote-box" data-aos="zoom-in-up"><i class="fas fa-quote-left" style="margin-right: 10px; color: #c8102e;"></i> Rather than pursuing short-term gains, Himalayan Ventures prioritizes sustainable growth — balancing high-potential opportunities with stable asset classes.</div>
+                <div class="contact-cta" data-aos="fade-up"><button class="btn-contact-cta" onclick="showPage('contact')"><i class="fas fa-envelope"></i> Get in Touch</button></div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="main-footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h4>Contact</h4>
-                        <p><i class="fas fa-phone-alt"></i> +977 9743964252</p>
-                        <p><i class="fab fa-whatsapp"></i> +977 9743964252</p>
-                        <p><i class="fas fa-envelope"></i> himalayanventuresandholdings@gmail.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Bhakta Marga-04, Baluwatar, Kathmandu, Nepal</p>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a onclick="showPage('services')">Portfolio Management</a></li>
-                            <li><a onclick="showPage('services')">Mutual Fund</a></li>
-                            <li><a onclick="showPage('services')">Qualified Institutional Investor (QII)</a></li>
-                            <li><a onclick="showPage('services')">Issue Management</a></li>
-                            <li><a onclick="showPage('services')">Registrar to Share (RTS/RTA)</a></li>
-                            <li><a onclick="showPage('services')">Corporate Advisory</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="https://www.nrb.org.np" target="_blank">Nepal Rastra Bank (NRB)</a></li>
-                            <li><a href="https://www.cdsc.com.np" target="_blank">CDS and Clearing Limited</a></li>
-                            <li><a href="https://www.sebon.gov.np" target="_blank">Securities Board of Nepal (SEBON)</a></li>
-                            <li><a href="https://www.nepalstock.com" target="_blank">Nepal Stock Exchange (NEPSE)</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Information Officer</h4>
-                        <div class="info-officer">
-                            <h5>Mr. Dipendra Kadariya</h5>
-                            <p>Senior Assistant General Manager</p>
-                            <p><i class="fas fa-phone-alt"></i> +977 9743964252</p>
-                            <p><i class="fas fa-envelope"></i> himalayanventuresandholdings@gmail.com</p>
-                        </div>
-                        <div class="social-icons">
-                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>© 2026 Himalayan Ventures and Holdings Pvt. Ltd. All Rights Reserved. | Driving Long-Term Value in Nepal</p>
-                </div>
-            </div>
-        </footer>
+        <footer class="main-footer"><div class="container"><div class="footer-grid"><div class="footer-col"><h4>Contact</h4><p><i class="fas fa-phone-alt"></i> +977 9743964252</p><p><i class="fab fa-whatsapp"></i> +977 9743964252</p><p><i class="fas fa-envelope"></i> himalayanventuresandholdings@gmail.com</p><p><i class="fas fa-map-marker-alt"></i> Bhakta Marga-04, Baluwatar, Kathmandu, Nepal</p></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="showServiceSection('sharemarket')">Share Market</a></li><li><a onclick="showServiceSection('commodity')">Commodity Market</a></li><li><a onclick="showServiceSection('realestate')">Real Estate</a></li><li><a onclick="showServiceSection('sme')">SME Investment</a></li></ul></div><div class="footer-col"><h4>Quick Links</h4><ul><li><a href="https://www.nrb.org.np" target="_blank">Nepal Rastra Bank</a></li><li><a href="https://www.sebon.gov.np" target="_blank">SEBON</a></li><li><a href="https://www.nepalstock.com" target="_blank">NEPSE</a></li></ul></div><div class="footer-col"><h4>Information Officer</h4><div class="info-officer"><h5>Mr. Dipendra Kadariya</h5><p>Senior Assistant General Manager</p><p><i class="fas fa-phone-alt"></i> +977 9743964252</p></div></div></div><div class="footer-bottom"><p>© 2026 Himalayan Ventures and Holdings Pvt. Ltd. All Rights Reserved.</p></div></div></footer>
     </div>
 
-    <!-- Page Views -->
-    <div id="aboutPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back to Home</button><h1 class="page-title">About Us</h1><div class="page-card"><h3>Company Overview</h3><p>Himalayan Ventures and Holdings is a Nepal-based investment company dedicated to long-term value creation across share market, commodity market, real estate, and SMEs. With a strategic emphasis on diversification and risk-managed growth, we create sustainable financial returns while contributing to Nepal's economic progress.</p></div><div class="stats"><div class="stat-item"><div class="stat-number">12</div><div class="stat-label">+ Years</div></div><div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Sectors</div></div><div class="stat-item"><div class="stat-number">25</div><div class="stat-label">Portfolio</div></div></div></div></div>
-    
-    <div id="servicesPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">Our Services</h1><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;"><div class="page-card"><i class="fas fa-chart-line" style="font-size:2rem; color:#D4AF37;"></i><h4>Share Market</h4><p>Equity investments and active trading in fundamentally sound companies with strong growth potential.</p></div><div class="page-card"><i class="fas fa-coins" style="font-size:2rem; color:#D4AF37;"></i><h4>Commodity Market</h4><p>Strategic positioning in metals and natural commodities using global demand-supply dynamics.</p></div><div class="page-card"><i class="fas fa-building" style="font-size:2rem; color:#D4AF37;"></i><h4>Real Estate</h4><p>Long-term value creation through high-appreciation assets and selective property trading.</p></div><div class="page-card"><i class="fas fa-handshake" style="font-size:2rem; color:#D4AF37;"></i><h4>SME Investment</h4><p>Equity participation and debentures for scalable Nepalese enterprises.</p></div></div></div></div>
-    
-    <div id="coreBusinessPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">What We Do</h1><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;"><div class="page-card"><i class="fas fa-chart-simple"></i><h4>Share Market</h4><p>Balanced mix of long-term equity investments and active trading strategies across Nepal's capital markets.</p></div><div class="page-card"><i class="fas fa-weight-hanging"></i><h4>Commodity Market</h4><p>Strategic positioning based on price trends and global demand-supply dynamics with risk controls.</p></div><div class="page-card"><i class="fas fa-city"></i><h4>Real Estate</h4><p>Long-term value creation focusing on assets with strong appreciation potential.</p></div><div class="page-card"><i class="fas fa-chart-line"></i><h4>SME Investment</h4><p>Capital through structured investment models including equity and debentures.</p></div></div></div></div>
-    
-    <div id="philosophyPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">Our Philosophy</h1><div class="page-card"><h3>Vision</h3><p>To be a trusted investment company driving sustainable growth in Nepal.</p><h3>Mission</h3><p>Allocate capital responsibly across diverse sectors, balancing opportunity with risk.</p><h3>Core Principles</h3><p>Diversification First • Long-Term Horizon • Transparency & Governance • Responsible Capital Allocation</p></div></div></div>
+    <!-- About Page Views (Only Company & Mission/Vision - Removed Directors & Advisory) -->
+    <div id="aboutPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back to Home</button><h1 class="page-title" id="aboutPageTitle">Our Company</h1><div id="companySection" class="about-section"><div class="page-card"><h3><i class="fas fa-building" style="color:#D4AF37;"></i> Our Company</h3><p><strong>Himalayan Ventures and Holdings</strong> is a Nepal-based investment and trading company dedicated to building long-term value through disciplined capital allocation across share market, commodity market, real estate, and SMEs.</p><p style="margin-top:1rem">With a strategic emphasis on diversification and risk-managed growth, Himalayan Ventures seeks to create sustainable financial returns while contributing meaningfully to Nepal's evolving economic landscape. The company approaches every investment with prudence, foresight, and a commitment to long-term prosperity.</p><p style="margin-top:1rem">Operating from Kathmandu, the company aligns its activities with Nepal's economic landscape, recognizing the importance of capital formation, efficient markets, and enterprise development.</p></div></div><div id="missionSection" class="about-section" style="display:none"><div class="page-card"><h3><i class="fas fa-eye"></i> Our Vision</h3><p>To be a trusted and forward-looking investment company that drives sustainable growth and contributes to the economic advancement of Nepal. We envision a future where capital is deployed responsibly, creating lasting value for investors, partners, and communities.</p></div><div class="page-card"><h3><i class="fas fa-bullseye"></i> Our Mission</h3><p>To allocate capital responsibly across diverse sectors, balancing opportunity with risk, and fostering long-term value creation through strategic investment and trading activities.</p><p style="margin-top:1rem"><strong>Core Principles:</strong> Diversification First, Long-Term Horizon, Transparency & Governance, Responsible Capital Allocation.</p></div></div></div></div>
 
-    <!-- CONTACT PAGE WITH FIREBASE FORM -->
-    <div id="contactPage" class="page-view">
-        <div class="page-container">
-            <button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back to Home</button>
-            <h1 class="page-title">Contact Us</h1>
-            <div class="contact-page-grid">
-                <div class="page-card">
-                    <h3><i class="fas fa-map-marker-alt" style="color: #D4AF37;"></i> Office Address</h3>
-                    <p>Bhakta Marga-04, Baluwatar<br>Kathmandu, Nepal</p>
-                    <h3><i class="fas fa-phone-alt" style="color: #D4AF37;"></i> Phone</h3>
-                    <p>+977 9743964252</p>
-                    <h3><i class="fas fa-envelope" style="color: #D4AF37;"></i> Email</h3>
-                    <p>himalayanventuresandholdings@gmail.com</p>
-                    <h3><i class="fas fa-clock" style="color: #D4AF37;"></i> Business Hours</h3>
-                    <p>Sunday - Friday: 10:00 AM - 6:00 PM</p>
-                </div>
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 1.5rem;">Send us a Message</h3>
-                    <form id="inquiryForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>First Name <span class="required-star">*</span></label>
-                                <input type="text" id="firstName" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name <span class="required-star">*</span></label>
-                                <input type="text" id="lastName" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Mobile Number <span class="required-star">*</span></label>
-                            <input type="tel" id="mobile" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email <span class="required-star">*</span></label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Subject <span class="required-star">*</span></label>
-                            <input type="text" id="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Message <span class="required-star">*</span></label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
-                        <div id="formStatus" class="form-status"></div>
-                    </form>
-                </div>
-            </div>
-            <div class="page-card" style="margin-top: 2rem;">
-                <h3>Information Officer</h3>
-                <p><strong>Mr. Raghundan sah</strong><br>Senior Assistant General Manager</p>
-                <p><i class="fas fa-phone-alt"></i> +977 9743964252</p>
-                <p><i class="fas fa-envelope"></i> himalayanventuresandholdings@gmail.com</p>
-            </div>
-        </div>
-    </div>
+    <!-- What We Do Detailed Page -->
+    <div id="whatWeDoPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back to Home</button><h1 class="page-title" id="servicePageTitle">Share Market</h1><div id="sharemarketSection" class="service-section"><div class="page-card"><h3><i class="fas fa-chart-line"></i> Share Market</h3><p><strong>Equity Investments and Active Trading</strong> — Himalayan Ventures maintains a balanced portfolio combining long-term equity investments with tactical trading strategies. We focus on fundamentally sound companies listed on NEPSE and other exchanges, emphasizing strong earnings growth, credible management, and sector leadership.</p><div class="service-stats" style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;"><span class="stat-badge">15+ Analysed Sectors</span><span class="stat-badge">12% Avg. Annual Return</span><span class="stat-badge">30+ Portfolio Companies</span></div></div></div><div id="commoditySection" class="service-section" style="display:none"><div class="page-card"><h3><i class="fas fa-coins"></i> Commodity Market</h3><p><strong>Strategic Metals and Natural Commodities</strong> — We deploy capital across precious metals, base metals, and select agricultural commodities. Our strategy leverages global demand-supply dynamics, macroeconomic indicators, and geopolitical factors.</p><div class="service-stats" style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;"><span class="stat-badge">Gold & Silver Trading</span><span class="stat-badge">Base Metals Portfolio</span><span class="stat-badge">Hedged Risk Strategies</span></div></div></div><div id="realestateSection" class="service-section" style="display:none"><div class="page-card"><h3><i class="fas fa-building"></i> Real Estate</h3><p><strong>Long-Term Value Creation through Property Assets</strong> — Himalayan Ventures identifies high-potential real estate opportunities across prime locations in Nepal. We focus on residential, commercial, and mixed-use developments with strong appreciation potential.</p><div class="service-stats" style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;"><span class="stat-badge">Kathmandu Valley Focus</span><span class="stat-badge">15%+ CAGR Potential</span><span class="stat-badge">Strategic Land Banking</span></div></div></div><div id="smeSection" class="service-section" style="display:none"><div class="page-card"><h3><i class="fas fa-handshake"></i> SME Investment</h3><p><strong>Fueling Nepal's Growth Engines</strong> — We provide growth capital to promising Small and Medium Enterprises through equity participation, convertible debentures, and structured financing. Our focus is on scalable businesses with capable management and strong market positioning.</p><div class="service-stats" style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;"><span class="stat-badge">20+ SMEs Funded</span><span class="stat-badge">Manufacturing & Tech Focus</span><span class="stat-badge">3-7 Year Horizon</span></div></div></div></div></div>
+
+    <!-- Pitch To Us Page (Connected to Firebase - Same Admin Panel) -->
+    <div id="pitchPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">Pitch To Us</h1><div class="page-card"><h3><i class="fas fa-lightbulb"></i> Submit Your Business Pitch</h3><p>Are you an entrepreneur with a scalable business idea? Himalayan Ventures is actively seeking investment opportunities in high-potential SMEs across Nepal. Share your pitch with us and let's build the future together.</p></div><div class="contact-form"><form id="pitchForm"><div class="form-row"><div class="form-group"><label>Full Name <span class="required-star">*</span></label><input type="text" id="pitchName" required></div><div class="form-group"><label>Company/Business Name</label><input type="text" id="companyName"></div></div><div class="form-row"><div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" id="pitchEmail" required></div><div class="form-group"><label>Phone Number <span class="required-star">*</span></label><input type="tel" id="pitchPhone" required></div></div><div class="form-group"><label>Pitch / Business Proposal <span class="required-star">*</span></label><textarea id="pitchMessage" rows="5" placeholder="Describe your business, funding requirement, growth potential, and why you're approaching Himalayan Ventures..." required></textarea></div><button type="submit" class="btn-submit" id="pitchSubmitBtn"><i class="fas fa-paper-plane"></i> Submit Pitch</button><div id="pitchStatus" class="form-status"></div></form></div></div></div>
+
+    <!-- Contact Page -->
+    <div id="contactPage" class="page-view"><div class="page-container"><button class="back-button" onclick="showMainContent()"><i class="fas fa-arrow-left"></i> Back</button><h1 class="page-title">Contact Us</h1><div class="contact-page-grid"><div class="page-card"><h3><i class="fas fa-map-marker-alt"></i> Office Address</h3><p>Bhakta Marga-04, Baluwatar<br>Kathmandu, Nepal</p><h3><i class="fas fa-phone-alt"></i> Phone</h3><p>+977 9743964252</p><h3><i class="fas fa-envelope"></i> Email</h3><p>himalayanventuresandholdings@gmail.com</p><h3><i class="fas fa-clock"></i> Business Hours</h3><p>Sunday - Friday: 10:00 AM - 6:00 PM</p></div><div class="contact-form"><h3>Send us a Message</h3><form id="contactForm"><div class="form-row"><div class="form-group"><label>First Name <span class="required-star">*</span></label><input type="text" id="contactFirstName" required></div><div class="form-group"><label>Last Name <span class="required-star">*</span></label><input type="text" id="contactLastName" required></div></div><div class="form-group"><label>Mobile Number <span class="required-star">*</span></label><input type="tel" id="contactMobile" required></div><div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" id="contactEmail" required></div><div class="form-group"><label>Subject <span class="required-star">*</span></label><input type="text" id="contactSubject" required></div><div class="form-group"><label>Message <span class="required-star">*</span></label><textarea id="contactMessage" required></textarea></div><button type="submit" class="btn-submit" id="contactSubmitBtn"><i class="fas fa-paper-plane"></i> Send Message</button><div id="contactStatus" class="form-status"></div></form></div></div><div class="page-card" style="margin-top: 2rem;"><h3>Information Officer</h3><p><strong>Mr. Dipendra Kadariya</strong><br>Senior Assistant General Manager</p><p><i class="fas fa-phone-alt"></i> +977 9743964252</p><p><i class="fas fa-envelope"></i> himalayanventuresandholdings@gmail.com</p></div></div></div>
 
     <!-- Floating Buttons -->
-    <a href="https://wa.me/9779743964252" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/9779743964252" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a><div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
     <div class="go-to-top" id="goToTopBtn"><i class="fas fa-arrow-up"></i></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
-
-        // Update document title and metadata for himalayanventuresandholdings.com
         document.title = "Himalayan Ventures and Holdings | Strategic Investment Nepal";
-        
-        // Firebase Configuration
+
         const firebaseConfig = {
             apiKey: "AIzaSyAipk6iSzjkQoQOVEVFUydxPAqXjOaRfhY",
             authDomain: "everest-public-school.firebaseapp.com",
@@ -992,51 +950,99 @@
             projectId: "everest-public-school",
             storageBucket: "everest-public-school.firebasestorage.app",
             messagingSenderId: "598969496568",
-            appId: "1:598969496568:web:b720c91e4a3c45347e9c0d",
-            measurementId: "G-C9KQSQMPJE"
+            appId: "1:598969496568:web:b720c91e4a3c45347e9c0d"
         };
-
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        const db = firebase.database();
 
-        // Hero Slider
-        let currentSlide = 0;
+        function refreshToHome() { window.location.href = window.location.pathname; }
+
+        let slideIdx = 0;
         const slides = document.querySelectorAll('.slide');
-        if(slides.length) {
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 5000);
-        }
+        if(slides.length) setInterval(() => { slides[slideIdx].classList.remove('active'); slideIdx = (slideIdx+1)%slides.length; slides[slideIdx].classList.add('active'); }, 5000);
 
-        // Page Navigation
         function showMainContent() {
             document.getElementById('mainContent').classList.remove('hide');
-            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, '', '/');
+            history.pushState(null,'','/');
         }
 
-        function showPage(pageName) {
+        function showPage(pn) {
             document.getElementById('mainContent').classList.add('hide');
-            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
-            const pageMap = { 'about': 'aboutPage', 'services': 'servicesPage', 'coreBusiness': 'coreBusinessPage', 'philosophy': 'philosophyPage', 'contact': 'contactPage' };
-            const pageId = pageMap[pageName];
-            if (pageId) document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            const map = { 'contact':'contactPage', 'pitch':'pitchPage' };
+            if(map[pn]) document.getElementById(map[pn]).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, '', '#');
         }
 
-        window.addEventListener('popstate', () => {
-            if (document.querySelector('.page-view.active')) {
-                document.getElementById('mainContent').classList.remove('hide');
-                document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
-            }
+        function showAboutSection(section) {
+            document.getElementById('mainContent').classList.add('hide');
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.getElementById('aboutPage').classList.add('active');
+            document.getElementById('companySection').style.display = 'none';
+            document.getElementById('missionSection').style.display = 'none';
+            const titles = { company:'Our Company', mission:'Mission & Vision' };
+            document.getElementById('aboutPageTitle').innerHTML = titles[section];
+            if(section==='company') document.getElementById('companySection').style.display = 'block';
+            else if(section==='mission') document.getElementById('missionSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showServiceSection(service) {
+            document.getElementById('mainContent').classList.add('hide');
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.getElementById('whatWeDoPage').classList.add('active');
+            document.getElementById('sharemarketSection').style.display = 'none';
+            document.getElementById('commoditySection').style.display = 'none';
+            document.getElementById('realestateSection').style.display = 'none';
+            document.getElementById('smeSection').style.display = 'none';
+            const titles = { sharemarket:'Share Market', commodity:'Commodity Market', realestate:'Real Estate', sme:'SME Investment' };
+            document.getElementById('servicePageTitle').innerHTML = titles[service];
+            if(service === 'sharemarket') document.getElementById('sharemarketSection').style.display = 'block';
+            else if(service === 'commodity') document.getElementById('commoditySection').style.display = 'block';
+            else if(service === 'realestate') document.getElementById('realestateSection').style.display = 'block';
+            else if(service === 'sme') document.getElementById('smeSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('popstate', () => { if(document.querySelector('.page-view.active')) showMainContent(); });
+
+        const toTop = document.getElementById('goToTopBtn');
+        window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 300));
+        toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Contact Form - stores in 'contacts' node
+        const cForm = document.getElementById('contactForm');
+        if(cForm) cForm.addEventListener('submit', async(e) => {
+            e.preventDefault();
+            const data = { firstName: document.getElementById('contactFirstName').value, lastName: document.getElementById('contactLastName').value, mobile: document.getElementById('contactMobile').value, email: document.getElementById('contactEmail').value, subject: document.getElementById('contactSubject').value, message: document.getElementById('contactMessage').value, timestamp: new Date().toISOString(), type: 'contact' };
+            const st = document.getElementById('contactStatus'), btn = document.getElementById('contactSubmitBtn');
+            btn.disabled=true; st.textContent='Sending...'; st.className='form-status loading';
+            try { await db.ref('contacts').push(data); st.textContent='✅ Message sent successfully!'; st.className='form-status success'; cForm.reset(); setTimeout(()=>st.className='form-status',4000); } 
+            catch(err) { st.textContent='❌ Error. Please try again.'; st.className='form-status error'; } finally { btn.disabled=false; }
         });
 
-        // Counter Animation
+        // Pitch Form - stores in 'pitches' node (same admin panel, separate collection for easy management)
+        const pForm = document.getElementById('pitchForm');
+        if(pForm) pForm.addEventListener('submit', async(e) => {
+            e.preventDefault();
+            const data = { 
+                fullName: document.getElementById('pitchName').value, 
+                company: document.getElementById('companyName').value, 
+                email: document.getElementById('pitchEmail').value, 
+                phone: document.getElementById('pitchPhone').value, 
+                pitch: document.getElementById('pitchMessage').value, 
+                timestamp: new Date().toISOString(),
+                type: 'pitch'
+            };
+            const st = document.getElementById('pitchStatus'), btn = document.getElementById('pitchSubmitBtn');
+            btn.disabled=true; st.textContent='Submitting pitch...'; st.className='form-status loading';
+            try { await db.ref('pitches').push(data); st.textContent='✅ Pitch submitted successfully! Our team will review and get back to you soon.'; st.className='form-status success'; pForm.reset(); setTimeout(()=>st.className='form-status',5000); } 
+            catch(err) { st.textContent='❌ Submission failed. Please try again later.'; st.className='form-status error'; } finally { btn.disabled=false; }
+        });
+
+        // Stats Counter
         const statNumbers = document.querySelectorAll('.stat-number');
         let animated = false;
         function animateStats() {
@@ -1047,11 +1053,8 @@
                 let current = 0;
                 const update = () => {
                     const inc = target / 40;
-                    if(current < target) {
-                        current += inc;
-                        stat.innerText = Math.ceil(current);
-                        requestAnimationFrame(update);
-                    } else stat.innerText = target;
+                    if(current < target) { current += inc; stat.innerText = Math.ceil(current); requestAnimationFrame(update); } 
+                    else stat.innerText = target;
                 };
                 update();
             });
@@ -1062,67 +1065,6 @@
         }, { threshold: 0.3 });
         const statsContainer = document.querySelector('.stats');
         if(statsContainer) observer.observe(statsContainer);
-
-        // Go to Top Button
-        const goToTopBtn = document.getElementById('goToTopBtn');
-        window.addEventListener('scroll', () => { goToTopBtn.classList.toggle('show', window.scrollY > 300); });
-        goToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        // Firebase Form Submission
-        const form = document.getElementById('inquiryForm');
-        const statusDiv = document.getElementById('formStatus');
-        const submitBtn = document.getElementById('submitBtn');
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const firstName = document.getElementById('firstName').value.trim();
-            const lastName = document.getElementById('lastName').value.trim();
-            const mobile = document.getElementById('mobile').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            if(!firstName || !lastName || !mobile || !email || !subject || !message) {
-                statusDiv.textContent = 'Please fill all required fields.';
-                statusDiv.className = 'form-status error';
-                setTimeout(() => { statusDiv.className = 'form-status'; }, 3000);
-                return;
-            }
-            if(!/^\S+@\S+\.\S+$/.test(email)) {
-                statusDiv.textContent = 'Please enter a valid email address.';
-                statusDiv.className = 'form-status error';
-                setTimeout(() => { statusDiv.className = 'form-status'; }, 3000);
-                return;
-            }
-            
-            submitBtn.disabled = true;
-            statusDiv.textContent = 'Sending your message...';
-            statusDiv.className = 'form-status loading';
-            
-            const inquiryData = {
-                firstName, lastName, mobile, email, subject, message,
-                timestamp: new Date().toISOString(),
-                read: false,
-                source: 'himalayanventuresandholdings.com'
-            };
-            
-            try {
-                const newInquiryRef = database.ref('inquiries').push();
-                await newInquiryRef.set(inquiryData);
-                statusDiv.textContent = `✅ Thank you ${firstName} ${lastName}! Your message has been sent successfully. We'll get back to you soon.`;
-                statusDiv.className = 'form-status success';
-                form.reset();
-                setTimeout(() => { statusDiv.className = 'form-status'; }, 5000);
-            } catch (error) {
-                console.error('Firebase error:', error);
-                statusDiv.textContent = '❌ Something went wrong. Please try again later or contact us directly via phone.';
-                statusDiv.className = 'form-status error';
-                setTimeout(() => { statusDiv.className = 'form-status'; }, 5000);
-            } finally {
-                submitBtn.disabled = false;
-            }
-        });
     </script>
 </body>
 </html>
