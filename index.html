@@ -123,6 +123,20 @@
         }
         .nav-links a:hover { color: #003087; }
         
+        /* Pitch To Us Button with Blue Boundary */
+        .pitch-link {
+            background: transparent;
+            border: 2px solid #003087 !important;
+            border-radius: 40px !important;
+            padding: 6px 18px !important;
+            transition: all 0.3s ease !important;
+        }
+        .pitch-link:hover {
+            background: #003087 !important;
+            color: white !important;
+            transform: translateY(-2px) !important;
+        }
+        
         /* Dropdown - Absolutely Positioned (Does NOT expand header) */
         .dropdown {
             position: relative;
@@ -843,7 +857,7 @@
                 <div class="logo-text">
                     <div class="logo-main">HIMALAYAN</div>
                     <div class="logo-sub">VENTURES AND HOLDINGS</div>
-                    <div class="logo-sub2"></div>
+                    <div class="logo-sub2">PVT. LTD</div>
                 </div>
             </div>
             <ul class="nav-links">
@@ -865,7 +879,7 @@
                     </div>
                 </li>
                 <li><a onclick="showPage('contact')">Contact</a></li>
-                <li><a onclick="showPage('pitch')">Pitch To Us</a></li>
+                <li><a onclick="showPage('pitch')" class="pitch-link">Pitch To Us</a></li>
             </ul>
         </nav>
     </header>
